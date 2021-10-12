@@ -1,3 +1,5 @@
 from django.urls import path
 from pagina import views
-urlpatterns = [path('', views.login ,name='login'),]
+urlpatterns = [path('', views.login ,name='login'), 
+path('index.html', views.inicio ,name='inicio')
+]
