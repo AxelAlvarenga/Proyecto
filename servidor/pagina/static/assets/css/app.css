@@ -122,6 +122,7 @@
 }
 #main .main-content {
   padding: 2rem 1.5rem;
+  background-color: #edf0f7;
 }
 #main .main-content .page-title h3 {
   font-size: 2rem;
@@ -802,7 +803,7 @@ footer {
   position: fixed;
   top: 0;
   z-index: 10;
-  background-color: #fff;
+  background-color: #f42f41;
   bottom: 0;
   border-right: 1px solid #eee;
   box-shadow: 0 0 10px #ececec;
@@ -839,7 +840,7 @@ border-radius : 50%;
   padding: 1.5rem 1.8rem 0.5rem;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #888;
+  color: #f0f0f0;
   text-transform: uppercase;
 }
 .sidebar-wrapper .menu .sidebar-link {
@@ -849,6 +850,7 @@ border-radius : 50%;
   display: flex;
   align-items: center;
   transition: all 0.5s;
+  background-color: #f3f531;
 }
 .sidebar-wrapper .menu .sidebar-link:hover span {
   opacity: 1;
@@ -873,7 +875,7 @@ border-radius : 50%;
   display: block;
 }
 .sidebar-wrapper .menu .sidebar-item.active .sidebar-link {
-  background-color: #e8f3ff;
+  background-color: #f3f531;
 }
 .sidebar-wrapper .menu .sidebar-item.active .sidebar-link:before {
   content: "";
@@ -1067,6 +1069,7 @@ border-radius : 50%;
 .navbar {
   height: 70px;
   padding: 1.5rem;
+  background-color: #f42f41;
 }
 .navbar .nav-link-user img {
   width: 30px;
