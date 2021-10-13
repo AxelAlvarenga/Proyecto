@@ -22,5 +22,13 @@ def login(request):
         else:
             return render(request, 'login.html', {"mensaje_error":"Usuario ingresado no existe."})
 def inicio(request):
-    return render(request , 'index.html')
+    if request.session.get("nombredelusuario"):
+        return render(request, 'index.html', {"nombre_completo": request.session.get("nombredelusuario")})
+    else:
+        return render(request, 'login.html')
+def salir(request):
+    request.session.flush()
+    return redirect("./")
+
+
 
