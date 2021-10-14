@@ -30,5 +30,13 @@ def salir(request):
     request.session.flush()
     return redirect("./")
 
+def buscar(request):
+    if request.session.get("nombredelusuario"):
+        return render(request, 'table-datatable.html', {"nombre_completo": request.session.get("nombredelusuario")})
+    else:
+        return render(request, 'table-datatable.html') 
+    
+
+
 
 
