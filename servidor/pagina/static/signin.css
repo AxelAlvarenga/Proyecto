@@ -8,8 +8,9 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-image: url("../static/assets/images/wallpapersden.com_76492-5120x2880.jpg");
-  background-size: 100rem;
+  background-color: antiquewhite;
+  background-image: url("../static/assets/images/background.png");
+  background-size: 95rem;
 }
 
 .form-signin {
