@@ -21,20 +21,21 @@ def login(request):
                 return render(request, 'login.html', {"mensaje_error":"Contraseña ingresada es incorrecta."})
         else:
             return render(request, 'login.html', {"mensaje_error":"Usuario ingresado no existe."})
-def inicio(request):
+def validar(request, pageSuccess):
     if request.session.get("nombredelusuario"):
-        return render(request, 'index.html', {"nombre_completo": request.session.get("nombredelusuario")})
+        return render(request, pageSuccess, {"nombre_completo": request.session.get("nombredelusuario")})
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html')           
+def inicio(request):
+   return validar(request,"index.html")
+
 def salir(request):
     request.session.flush()
     return redirect("./")
 
 def buscar(request):
-    if request.session.get("nombredelusuario"):
-        return render(request, 'table-datatable.html', {"nombre_completo": request.session.get("nombredelusuario")})
-    else:
-        return render(request, 'table-datatable.html') 
+    return validar(request,"table-datatable.html")
+
     
 
 
