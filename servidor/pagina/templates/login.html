@@ -38,6 +38,11 @@
     <link href="{% static 'signin.css'%}" rel="stylesheet">
   </head>
   <body class="text-center">
+    <style>
+      .recordar{
+        color: azure;
+      }
+    </style>
     
 <main class="form-signin">
   <form role="form" action="./" method="POST">{%csrf_token%}
@@ -56,7 +61,7 @@
     </div>
 
     <div class="checkbox mb-3">
-      <label>
+      <label class="recordar">
         <input type="checkbox" value="remember-me"> Recordar
       </label>
     </div>

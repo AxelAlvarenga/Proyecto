@@ -8,9 +8,9 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: antiquewhite;
-  background-image: url("../static/assets/images/background.png");
-  background-size: 95rem;
+  background-color: rgb(250, 230, 204);
+  background-image: url("../static/assets/images/backgroundlogin.png");
+  background-size: 98rem;
 }
 
 .form-signin {
