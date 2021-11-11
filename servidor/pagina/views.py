@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from pagina.models import Usuarios
+from pagina.models import producto
 
 def login(request):
     if request.method == "GET":
@@ -33,11 +34,19 @@ def salir(request):
     request.session.flush()
     return redirect("./")
 
-def buscar(request):
+def verproducto(request):
     return validar(request,"table-datatable.html")
 
-    
+def listar_producto(request):
+    return 
 
+def buscar(request):
+  
+         listatabla=producto.objects.all()
+         return render(request, "table-datatable.html",
+     
+         {"nombre_completo":request.session.get("nombre_completo_usuario"),"listatabla":listatabla})
+  
 
 
 
