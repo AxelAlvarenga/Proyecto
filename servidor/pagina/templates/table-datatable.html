@@ -105,12 +105,14 @@
                                     <td>{{lista.preciocompra_productos}}</td>
                                     <td>{{lista.precioventa_productos}}</td>
                                     <td>{{lista.categoria_productos}}</td>
-                                    <td>{{lista.cantidad_productos}}</td>
+                                    <td>{{lista.cantidad_productos}}
+                                        <th data-sortable="" style="width:11.125%;"><a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                            Editar
+                                          </a></td>
+                                    </td>
                                     
                                 
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Editar
-                                      </a>
+                                    
                                 </td>
                                 </tr>
                                 {%endfor%}                                            
@@ -123,10 +125,11 @@
 
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
+                    <a href="{%url 'editproducto'  %}">
                  <button class="agregar_producto">
                      Añadir Producto
                  </button>
-                    
+                </a>   
                     
                 </div>
             </footer>

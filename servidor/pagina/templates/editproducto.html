@@ -1,0 +1,30 @@
+{%extends 'Menu.html'%}
+
+{% load static %}
+{%block cuerpo%}
+<button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+</div>
+        </div>
+  <form action="{% url 'editproducto' %}">
+    <div class="forma">
+      <label for="ingresarnombre">Example label</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+   
+    
+      <label for="formGroupExampleInput2">Another label</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+      
+      </div>
+      <footer>
+        <div class="footer clearfix mb-0 text-muted">
+            <a href="{%url 'editproducto'  %}">
+         <button class="guardar-producto">
+             Añadir Producto
+         </button>
+        </a>   
+            
+        </div>
+    </footer>
+  </form>
+{%endblock%}
+ 
