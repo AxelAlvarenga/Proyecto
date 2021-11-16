@@ -43,45 +43,45 @@ def buscar(request):
          listatabla=producto.objects.all()
          return render(request, "table-datatable.html",
      
-         {"nombre_completo":request.session.get("nombre_completo_usuario"),"listatabla":listatabla})
+         {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla})
 
-# def editproducto(request):
-    # if request.method=="GET":
-    #     producto_actual=producto.objects.filter(codigo_productos=producto_actual).exists()
-    #     if producto_actual:
-    #         datos_producto=producto.objects.filter(codigo_productos=producto_actual).first()
-    #         return render(request, 'editproducto.html',
-    #         {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario"})
-    #     else:
-    #         return render(request, "sections/config/edit_user.html",
-    #         {"nombre_completo":request.session.get("nombre_completo"), "producto_actual":producto_actual, "titulo":"Cargar Usuario"})
+def editproducto(request, producto_actual=0):
+    if request.method=="GET":
+        producto_actual=producto.objects.filter(codigo_productos=producto_actual).exists()
+        if producto_actual:
+            datos_producto=producto.objects.filter(codigo_productos=producto_actual).first()
+            return render(request, 'editproducto.html',
+            {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario"})
+        else:
+            return render(request, "editproducto.html",
+            {"nombre_completo":request.session.get("nombre_completo"), "producto_actual":producto_actual, "titulo":"Cargar Usuario"})
 
-    # if request.method=="POST":
-    #     if producto_actual==0:
-    #         producto_nuevo=producto(producto=request.POST.get('producto'),
-    #         codigo_producto=request.POST.get('codigo_producto'),
-    #         preciocompra_producto=request.POST.get('preciocompra_producto'),
-    #         precioventa_producto=request.POST.get('precioventa_producto'),
-    #         cantidad_producto=request.POST.get('cantidad_producto'),
-    #         categoria_producto=request.POST.get('categoria_producto'),
-    #         nombre_producto=request.POST.get("nombre_producto"))
+    if request.method=="POST":
+        if producto_actual==0:
+            producto_nuevo=producto(producto=request.POST.get('producto'),
+            codigo_producto=request.POST.get('codigo_producto'),
+            preciocompra_producto=request.POST.get('preciocompra_producto'),
+            precioventa_producto=request.POST.get('precioventa_producto'),
+            cantidad_producto=request.POST.get('cantidad_producto'),
+            categoria_producto=request.POST.get('categoria_producto'),
+            nombre_producto=request.POST.get("nombre_producto"))
             
-    #         producto_nuevo.save()
-    #     else:
-    #         producto_actual=producto.objects.get(codigo_producto=producto_actual)
-    #         producto_actual.nombre_producto=request.POST.get("nombre_producto")
-    #         producto_actual.codigo_producto=request.POST.get("codigo_producto")
-    #         producto_actual.preciocompra_producto=request.POST.get("preciocompra_producto")
-    #         producto_actual.cantidad_producto=request.POST.get("cantidad_producto")
-    #         producto_actual.precioventa_producto=request.POST.get("precioventa_producto")
-    #         producto_actual.categoria_producto=request.POST.get("categoria_producto")
-    #         producto_actual.save()
+            producto_nuevo.save()
+        else:
+            producto_actual=producto.objects.get(codigo_producto=producto_actual)
+            producto_actual.nombre_producto=request.POST.get("nombre_producto")
+            producto_actual.codigo_producto=request.POST.get("codigo_producto")
+            producto_actual.preciocompra_producto=request.POST.get("preciocompra_producto")
+            producto_actual.cantidad_producto=request.POST.get("cantidad_producto")
+            producto_actual.precioventa_producto=request.POST.get("precioventa_producto")
+            producto_actual.categoria_producto=request.POST.get("categoria_producto")
+            producto_actual.save()
 
-    #     return redirect("../users")
+        return redirect("../editproducto")
 
-    # return render(request, "editproducto.html")
-def editproducto(request):
+    return render(request, "editproducto.html")
+# def editproducto(request):
     
-    return render(request, 'editproducto.html')
+#     return validar(request, 'editproducto.html')
   
 
