@@ -78,8 +78,11 @@ def editproducto(request, producto_actual=0):
             producto_actual.save()
 
         return redirect("../editproducto")
-
-    return render(request, "editproducto.html")
+    
+    return render(request, "editproducto.html",
+            {"nombre_completo":request.session.get("nombre_completo"), "producto_actual":producto_actual, "titulo":"Cargar Usuario"})
+    
+    
 # def editproducto(request):
     
 #     return validar(request, 'editproducto.html')
