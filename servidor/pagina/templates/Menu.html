@@ -1,93 +1,122 @@
 {%load static%}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> ARM Admin </title>
-    
+
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css'%}">
-    
+
     <link rel="stylesheet" href="{% static 'assets/vendors/chartjs/Chart.min.css'%}">
 
     <link rel="stylesheet" href="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.css'%}">
     <link rel="stylesheet" href="{% static 'assets/css/app.css'%}">
     <link rel="shortcut icon" href="{% static 'assets/images/ARMLOGO.png'%}" type="image/x-icon">
 </head>
+
 <body>
-    
-    
+
+
     <div id="app">
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
-    <div class="sidebar-header">
-        <center>
-        <img src="{% static 'assets/images/ARMLOGO.png'%}" alt="" srcset="">
-        </center>
-    </div>
-    <div class="sidebar-menu">
-        <ul class="menu">
-            
-            
-                <li class='sidebar-title'>Mi Menú </li>
-            
-            
-            
-                <li class="sidebar-item" id = "sidebar-item1">
-                    <a href="index.html" class='sidebar-link'>
-                        <i data-feather="home" width="20"></i> 
-                        <span>Dashboard</span>
-                    </a>
-                    
-                    
-                </li>
+                <div class="sidebar-header">
+                    <center>
+                        <img src="{% static 'assets/images/ARMLOGO.png'%}" alt="" srcset="">
+                    </center>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
 
-                <li class="sidebar-item" id = "sidebar-item2">
-                    <a href="buscar" class="sidebar-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg> 
-                        <span>Producto</span>
-                    </a>
-                </li>
 
-    
-            
-            
-            
-                
+                        <li class='sidebar-title'>Mi Menú </li>
 
-            
-            
-            
-               
-                    
-                 
-            
-            
-            
-               
-            
-            
-         
-        </ul>
-    </div>
-    
-        
+
+                        <li class="sidebar-item" id="sidebar-item1">
+                            <a href="cargar_cliente.html" class='sidebar-link'>
+                                <img src="{% static 'assets/images/atencion-al-cliente.png'%}" width="20" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="12" y1="18" x2="12" y2="12"></line>
+                                <line x1="9" y1="15" x2="15" y2="15"></line>
+                                <span>Clientes</span>
+                            </a>
+
+
+                        
+
+                        <li class="sidebar-item" id="sidebar-item2">
+                            <a href="buscar" class="sidebar-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-file-plus">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                                </svg>
+                                <span>Producto</span>
+                            </a>
+                        </li>
+
+                    </li>
+                    <li class="sidebar-item" id="sidebar-item3">
+                        <a href="index.html" class='sidebar-link'>
+                            <i data-feather="home" width="20"></i>
+                            <span>Reportes</span>
+                        </a>
+
+
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                </div>
+
+
 </body>
+
 </html>
 
-    {%block cuerpo%}
-    {%endblock%}
-    <script>
-        //SE TRAE LOS ELEMENTOS DE HTML AL JAVASCRIPT
-        var sidebar = document.getElementById('sidebar-item1')
-        var sidebar2 = document.getElementById('sidebar-item2')
-        //SE TRAE LOS ELEMENTOS DE HTML AL JAVASCRIPT
+{%block cuerpo%}
+{%endblock%}
+<script>
+    //SE TRAE LOS ELEMENTOS DE HTML AL JAVASCRIPT
+    var sidebar = document.getElementById('sidebar-item1')
+    var sidebar2 = document.getElementById('sidebar-item2')
+    var sidebar3 = document.getElementById('sidebar-item3')
+    //SE TRAE LOS ELEMENTOS DE HTML AL JAVASCRIPT
 
-        //SE VALIDA EN QUE RUTA ESTAS POSICIONADO
-        if (window.location.pathname == '/pagina/index.html') {
-            //SE LE AÑADE EL ATRIBUTO active PARA QUE QUEDE MARCADO
-            sidebar.className += ' active'
-        } else if(window.location.pathname == '/pagina/buscar' || window.location.pathname == '/pagina/editproducto'){
-            sidebar2.className += ' active'
-        }
-    </script>
+    //SE VALIDA EN QUE RUTA ESTAS POSICIONADO
+    if (window.location.pathname == '/pagina/cargar_cliente.html') {
+        //SE LE AÑADE EL ATRIBUTO active PARA QUE QUEDE MARCADO
+        sidebar.className += ' active'
+    } else if (window.location.pathname == '/pagina/buscar' || window.location.pathname == '/pagina/editproducto') {
+        sidebar2.className += ' active'
+    
+    }else if (window.location.pathname == '/pagina/index.html'){
+        sidebar3.className += ' active'
+    }
+</script>

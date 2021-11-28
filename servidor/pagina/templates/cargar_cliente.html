@@ -66,57 +66,79 @@
             </ul>
         </div>
     </nav>
-    <form action="{% url 'editproducto' %}">
+    <form action="{% url 'cargar_cliente' %}">
         <div class="forma">
-            <label for="ingresar-nombre">Añadir nombre del producto</label>
-            <input type="text" class="form-control" id="formGroupExampleInput1" name="nombre_producto" value="{{producto_actual.nombre_productos}}">
+            <label for="ingresar-nombre">Nombre completo</label>
+            <input type="text" class="form-control" id="formGroupExampleInput1">
 
 
-            <label for="ingresar-codigo">Añadir codigo del producto</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" name="codigo_producto" value="{{producto_actual.codigo_productos}}">
+            <label for="ingresar-codigo">Número de telefono</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2">
 
-            <label for="ingresar-precio-compra">Añadir precio de compra</label>
-            <input type="text" class="form-control" id="formGroupExampleInput3" name="preciocompra_producto" value="{{producto_actual.preciocompra_productos}}">
-
-            <label for="ingresar-precio-compra">Añadir precio de venta</label>
-            <input type="text" class="form-control" id="formGroupExampleInput4" name="precioventa_productos" value="{{producto_actual.precioventa_productos}}">
-
-            <label for="ingresar-cantidad">Añadir cantidad</label>
-            <input type="text" class="form-control" id="formGroupExampleInput5" name="cantidad_producto" value="{{producto_actual.cantidad_productos}}">
-            <div class="card-header">
-                seleccionar categoria de producto
-            </div>
-            <select class="dataTable-selector form-select">
-                <option value="5">5</option>
-                <option value="10" selected="">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
-            </select>
-
-
+            <label for="ingresar-precio-compra">Direccion</label>
+            <input type="text" class="form-control" id="formGroupExampleInput3">
 
         </div>
         <footer>
             <div class="footer clearfix mb-0 text-muted">
-                <a href="{%url 'editproducto'  %}">
+                <a href="{%url 'cargar_cliente'  %}">
                     <button class="guardar-producto">
-                        Añadir Producto
+                        Guardar usuario
                     </button>
                 </a>
 
             </div>
         </footer>
     </form>
-    </body>
+    <div class="card-body">
+        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+            <div class="dataTable-top">
+                <div class="dataTable-dropdown">
+                    <table class="table table-striped dataTable-table" id="table1">
+                        <thead>
+                            <tr>
+                                <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                                        class="dataTable-sorter">Nombre</a></th>
+                                <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                                        class="dataTable-sorter">telefono</a></th>
+                                <th data-sortable="" style="width: 20.8988%;"><a href="#"
+                                        class="dataTable-sorter">direccion</a>
+                            </tr>
+                        </thead>
 
-    </html>
-    <script src="{% static 'assets/js/feather-icons/feather.min.js'%}"></script>
-    <script src="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
-    <script src="{% static 'assets/js/app.js'%}"></script>
-    <script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
-    <script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
-    <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
+                        {%for lista in listatabla%}
+                        <tr>
 
-    <script src="{% static 'assets/js/main.js'%}"></script>
-    {%endblock%}
+                            <td>{{lista.nombre_productos}}</td>
+                            <td>{{lista.codigo_productos}}</td>
+                            <td>{{lista.preciocompra_productos}}</td>
+                            <td>{{lista.precioventa_productos}}</td>
+                            <td>{{lista.categoria_productos}}</td>
+                            <td>{{lista.cantidad_productos}}
+                            <th data-sortable="" style="width:11.125%;"><a href="javascript:;"
+                                    class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                    data-original-title="Editar usuario">
+                                    Editar
+                                </a></td>
+                                </td>
+
+
+
+                                </td>
+                        </tr>
+                        {%endfor%}
+
+                </div>
+            </div>
+            </body>
+
+            </html>
+            <script src="{% static 'assets/js/feather-icons/feather.min.js'%}"></script>
+            <script src="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+            <script src="{% static 'assets/js/app.js'%}"></script>
+            <script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
+            <script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
+            <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
+
+            <script src="{% static 'assets/js/main.js'%}"></script>
+            {%endblock%}

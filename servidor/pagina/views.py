@@ -59,22 +59,22 @@ def editproducto(request, producto_actual=0):
     if request.method=="POST":
         if producto_actual==0:
             producto_nuevo=producto(producto=request.POST.get('producto'),
-            codigo_producto=request.POST.get('codigo_producto'),
-            preciocompra_producto=request.POST.get('preciocompra_producto'),
-            precioventa_producto=request.POST.get('precioventa_producto'),
-            cantidad_producto=request.POST.get('cantidad_producto'),
-            categoria_producto=request.POST.get('categoria_producto'),
-            nombre_producto=request.POST.get("nombre_producto"))
+            codigo_productos=request.POST.get('codigo_producto'),
+            preciocompra_productos=request.POST.get('preciocompra_producto'),
+            precioventa_productos=request.POST.get('precioventa_producto'),
+            cantidad_productos=request.POST.get('cantidad_producto'),
+            categoria_productos=request.POST.get('categoria_producto'),
+            nombre_productos=request.POST.get("nombre_producto"))
             
             producto_nuevo.save()
         else:
-            producto_actual=producto.objects.get(codigo_producto=producto_actual)
-            producto_actual.nombre_producto=request.POST.get("nombre_producto")
-            producto_actual.codigo_producto=request.POST.get("codigo_producto")
-            producto_actual.preciocompra_producto=request.POST.get("preciocompra_producto")
-            producto_actual.cantidad_producto=request.POST.get("cantidad_producto")
-            producto_actual.precioventa_producto=request.POST.get("precioventa_producto")
-            producto_actual.categoria_producto=request.POST.get("categoria_producto")
+            producto_actual=producto.objects.get(codigo_productos=producto_actual)
+            producto_actual.nombre_productos=request.POST.get("nombre_producto")
+            producto_actual.codigo_productos=request.POST.get("codigo_producto")
+            producto_actual.preciocompra_productos=request.POST.get("preciocompra_producto")
+            producto_actual.cantidad_productos=request.POST.get("cantidad_producto")
+            producto_actual.precioventa_productos=request.POST.get("precioventa_producto")
+            producto_actual.categoria_productos=request.POST.get("categoria_producto")
             producto_actual.save()
 
         return redirect("../editproducto")
@@ -86,5 +86,11 @@ def editproducto(request, producto_actual=0):
 # def editproducto(request):
     
 #     return validar(request, 'editproducto.html')
+
+def cargar_cliente(request):
+  
+    return render(request, "cargar_cliente.html",
+    {"nombre_completo":request.session.get("nombredelusuario")})
+    
   
 
