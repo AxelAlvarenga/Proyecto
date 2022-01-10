@@ -106,7 +106,8 @@
                                     <td>{{lista.precioventa_productos}}</td>
                                     <td>{{lista.categoria_productos}}</td>
                                     <td>{{lista.cantidad_productos}}
-                                        <th data-sortable="" style="width:11.125%;"><a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                        <th data-sortable="" style="width:11.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                            
                                             Editar
                                           </a></td>
                                     </td>
@@ -125,7 +126,7 @@
 
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
-                    <a href="{%url 'editproducto'  %}">
+                    <a href="{%url 'editproducto' 0 %}">
                  <button class="agregar_producto">
                      Añadir Producto
                  </button>

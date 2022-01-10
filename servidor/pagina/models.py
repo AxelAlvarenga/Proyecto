@@ -17,3 +17,9 @@ class producto(models.Model):
     precioventa_productos= models.IntegerField()
     categoria_productos= models.CharField(max_length = 50)
     cantidad_productos=models.IntegerField()
+
+class cliente(models.Model):
+    codigo_cliente=models.IntegerField(primary_key=True)
+    nombre_cliente= models.CharField(max_length = 50)
+    telefono_cliente= models.IntegerField()
+    direccion_cliente=models.CharField(max_length=50)

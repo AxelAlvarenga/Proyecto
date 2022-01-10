@@ -66,28 +66,29 @@
             </ul>
         </div>
     </nav>
-    <form action="{% url 'editproducto' %}">
+    <form action="{% url 'editproducto' producto_actual %}" method="POST" >
+        {% csrf_token %}
         <div class="forma">
             <label for="ingresar-nombre">Añadir nombre del producto</label>
-            <input type="text" class="form-control" id="formGroupExampleInput1" name="nombre_producto" value="{{producto_actual.nombre_productos}}">
+            <input type="text" class="form-control" id="formGroupExampleInput1" name="nombre_productos" value="{{datos_act.nombre_productos}}">
 
 
             <label for="ingresar-codigo">Añadir codigo del producto</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" name="codigo_producto" value="{{producto_actual.codigo_productos}}">
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="codigo_productos" value="{{datos_act.codigo_productos}}">
 
             <label for="ingresar-precio-compra">Añadir precio de compra</label>
-            <input type="text" class="form-control" id="formGroupExampleInput3" name="preciocompra_producto" value="{{producto_actual.preciocompra_productos}}">
+            <input type="text" class="form-control" id="formGroupExampleInput3" name="preciocompra_productos" value="{{datos_act.preciocompra_productos}}" >
 
             <label for="ingresar-precio-compra">Añadir precio de venta</label>
-            <input type="text" class="form-control" id="formGroupExampleInput4" name="precioventa_productos" value="{{producto_actual.precioventa_productos}}">
+            <input type="text" class="form-control" id="formGroupExampleInput4" name="precioventa_productos" value="{{datos_act.precioventa_productos}}" >
 
             <label for="ingresar-cantidad">Añadir cantidad</label>
-            <input type="text" class="form-control" id="formGroupExampleInput5" name="cantidad_producto" value="{{producto_actual.cantidad_productos}}">
+            <input type="text" class="form-control" id="formGroupExampleInput5" name="cantidad_productos" value="{{datos_act.cantidad_productos}}">
             <div class="card-header">
                 seleccionar categoria de producto
             </div>
-            <select class="dataTable-selector form-select">
-                <option value="5">5</option>
+            <select class="dataTable-selector form-select" name="categoria_productos">
+                <option value="5">Snacks</option>
                 <option value="10" selected="">10</option>
                 <option value="15">15</option>
                 <option value="20">20</option>
@@ -99,11 +100,11 @@
         </div>
         <footer>
             <div class="footer clearfix mb-0 text-muted">
-                <a href="{%url 'editproducto'  %}">
+               
                     <button class="guardar-producto">
-                        Añadir Producto
+                        Guardar Producto
                     </button>
-                </a>
+            
 
             </div>
         </footer>

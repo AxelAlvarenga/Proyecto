@@ -66,26 +66,30 @@
             </ul>
         </div>
     </nav>
-    <form action="{% url 'cargar_cliente' %}">
+    <form action="{% url 'editclientes' cliente_actual %}" method="POST">
+        {% csrf_token %}
         <div class="forma">
+            <label for="ingresar-nombre">Numero de cedula</label>
+            <input type="text" class="form-control" id="formGroupExampleInput1" name="codigo_cliente" value="{{datos_act.codigo_cliente}}">
+  
+
             <label for="ingresar-nombre">Nombre completo</label>
-            <input type="text" class="form-control" id="formGroupExampleInput1">
+            <input type="text" class="form-control" id="formGroupExampleInput1" name="nombre_cliente" value="{{datos_act.nombre_cliente}}">
 
 
             <label for="ingresar-codigo">Número de telefono</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2">
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="telefono_cliente" value="{{datos_act.telefono_cliente}}">
 
             <label for="ingresar-precio-compra">Direccion</label>
-            <input type="text" class="form-control" id="formGroupExampleInput3">
+            <input type="text" class="form-control" id="formGroupExampleInput3" name="direccion_cliente" value="{{datos_act.direccion_cliente}}">
 
         </div>
         <footer>
             <div class="footer clearfix mb-0 text-muted">
-                <a href="{%url 'cargar_cliente'  %}">
-                    <button class="guardar-producto">
+                
+                    <button class="guardar-producto" type="submit">
                         Guardar usuario
                     </button>
-                </a>
 
             </div>
         </footer>
@@ -98,6 +102,8 @@
                         <thead>
                             <tr>
                                 <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                                    class="dataTable-sorter">Cedula</a></th>
+                                <th data-sortable="" style="width: 23.2012%;"><a href="#"
                                         class="dataTable-sorter">Nombre</a></th>
                                 <th data-sortable="" style="width: 23.2012%;"><a href="#"
                                         class="dataTable-sorter">telefono</a></th>
@@ -106,16 +112,15 @@
                             </tr>
                         </thead>
 
-                        {%for lista in listatabla%}
+                        {%for lista in listaclientes%}
                         <tr>
 
-                            <td>{{lista.nombre_productos}}</td>
-                            <td>{{lista.codigo_productos}}</td>
-                            <td>{{lista.preciocompra_productos}}</td>
-                            <td>{{lista.precioventa_productos}}</td>
-                            <td>{{lista.categoria_productos}}</td>
-                            <td>{{lista.cantidad_productos}}
-                            <th data-sortable="" style="width:11.125%;"><a href="javascript:;"
+                            <td>{{lista.codigo_cliente}}</td>
+                            <td>{{lista.nombre_cliente}}</td>
+                            <td>{{lista.telefono_cliente}}</td>
+                            <td>{{lista.direccion_cliente}}</td>
+
+                            <th data-sortable="" style="width:11.125%;"><a href="{%url 'editclientes' lista.codigo_cliente%}"
                                     class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                     data-original-title="Editar usuario">
                                     Editar
