@@ -89,7 +89,7 @@ def editclientes(request, cliente_actual=0):
             return render(request, 'cargar_cliente.html',
             {"datos_act":datos_cliente, "cliente_actual":cliente_actual, "titulo":"Editar Usuario" , "listaclientes":listaclientes})
         else:
-            return render(request, "cargar_cliente.html", {"nombre_completo":request.session.get("nombre_completo"), "cliente_actual":cliente_actual, "titulo":"Cargar Usuario" , "listaclientes":listaclientes})
+            return render(request, "cargar_cliente.html", {"nombre_completo":request.session.get("nombredelusuario"), "cliente_actual":cliente_actual, "titulo":"Cargar Usuario" , "listaclientes":listaclientes})
 
     if request.method=="POST":
         if cliente_actual==0:
@@ -109,5 +109,45 @@ def editclientes(request, cliente_actual=0):
             cliente_actual.save()
 
            
-    return redirect("../editclientes/0")           
+    return redirect("../editclientes/0")
+
+# def editusuarios(request, usuario_actual=0):
+#     listausuarios=Usuarios.objects.all()
+#     if request.method=="GET":
+#         usu_actual=Usuarios.objects.filter(codigo_cliente=usuario_actual).exists()
+#         if usu_actual:
+#             datos_usuario=Usuarios.objects.filter(codigo_cliente=usuario_actual).first()
+#             return render(request, 'cargar_usuario.html',
+#             {"datos_act":datos_usuario, "usuario_actual":usuario_actual, "titulo":"Editar Usuario" , "listausuarios":listausuarios})
+#         else:
+#             return render(request, "cargar_cliente.html", {"nombre_completo":request.session.get("nombre_completo"), "cliente_actual":cliente_actual, "titulo":"Cargar Usuario" , "listaclientes":listaclientes})
+
+#     if request.method=="POST":
+#         if cliente_actual==0:
+#             cliente_nuevo=cliente(codigo_cliente=request.POST.get('codigo_cliente'),
+#             nombre_cliente=request.POST.get('nombre_cliente'),
+#             telefono_cliente=request.POST.get('telefono_cliente'),
+#             direccion_cliente=request.POST.get("direccion_cliente"))
+
+#             cliente_nuevo.save()
+#         else:
+#             cliente_actual=cliente.objects.get(codigo_cliente=cliente_actual)
+#             cliente_actual.nombre_cliente=request.POST.get("nombre_cliente")
+#             cliente_actual.codigo_cliente=request.POST.get("codigo_cliente")
+#             cliente_actual.direccion_cliente=request.POST.get("direccion_cliente")
+#             cliente_actual.telefono_cliente=request.POST.get("telefonos_cliente")
+
+#             cliente_actual.save()
+
+           
+#     return redirect("../editclientes/0")             
+
+def vender(request):
+  
+        listatabla=producto.objects.all()
+        return render(request, "punto_venta.html",
+     
+         {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla})
+     
+
 
