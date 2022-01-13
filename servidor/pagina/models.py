@@ -23,3 +23,5 @@ class cliente(models.Model):
     nombre_cliente= models.CharField(max_length = 50)
     telefono_cliente= models.IntegerField()
     direccion_cliente=models.CharField(max_length=50)
+
+

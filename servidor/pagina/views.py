@@ -149,5 +149,10 @@ def vender(request):
      
          {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla})
      
+def borrar(request,producto_actual ):
 
+    producto.objects.filter(codigo_productos= producto_actual).delete()
+
+    return redirect("../buscar")
+    
 

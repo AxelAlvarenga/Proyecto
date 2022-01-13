@@ -66,4 +66,58 @@
             </ul>
         </div>
     </nav>
+    <form>
+
+        <div class="clientept">
+            <label for="ingresar-nombre">Cedula de cliente </label>
+            <input type="text" class="clienteptex">
+        </div>
+        <div class="clientept">
+            <label for="ingresar-nombre">Nombre del Cliente </label>
+            <input type="text" class="clienteptex">
+        </div>
+    </form>
+    <div class="card-body">
+        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+            <div class="dataTable-top">
+                <div class="dataTable-dropdown">
+                    <table class="table table-striped dataTable-table" id="table1">
+                        <thead>
+                            <tr>
+                                <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
+                                    class="dt">Nombre</a></th>
+                                <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
+                                        class="dt">Precio</a></th>
+                            </tr>
+                        </thead>
+
+                        {%for lista in listatabla%}
+                        <tr>
+
+                            <td>{{lista.nombre_productos}}</td>
+                            <td>{{lista.precioventa_productos}}</td>
+
+                           
+
+
+
+                                </td>
+                        </tr>
+                        {%endfor%}
+
+                </div>
+
+
+</body>
+
+</html>
+<script src="{% static 'assets/js/feather-icons/feather.min.js'%}"></script>
+<script src="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+<script src="{% static 'assets/js/app.js'%}"></script>
+<script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
+<script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
+<script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
+
+<script src="{% static 'assets/js/main.js'%}"></script>
+
 {%endblock%}

@@ -8,5 +8,6 @@ path('verproducto/<int:producto_actual>', views.verproducto, name='verproducto')
 path('editproducto/<int:producto_actual>',views.editproducto, name='editproducto'),
 path('editclientes/<int:cliente_actual>', views.editclientes ,name='editclientes'),
 # path('editusuarios/<int:usuario_actual>', views.editusuarios ,name='editusuarios'),
-path('vender', views.vender ,name='vender')
+path('vender', views.vender ,name='vender'),
+path('borrar/<int:producto_actual>', views.borrar , name='borrar')
 ]
