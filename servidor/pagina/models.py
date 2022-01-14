@@ -24,4 +24,8 @@ class cliente(models.Model):
     telefono_cliente= models.IntegerField()
     direccion_cliente=models.CharField(max_length=50)
 
+class categoria(models.Model):
+    cogigo_categoria=models.IntegerField(primary_key=True)
+    nombre_categoria=models.CharField(max_length = 50)   
+
 

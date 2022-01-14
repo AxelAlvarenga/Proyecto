@@ -76,12 +76,31 @@
             <label for="ingresar-nombre">Nombre del Cliente </label>
             <input type="text" class="clienteptex">
         </div>
+        <div class="busqueda">
+            <div class="clientept">
+                <label for="ingresar-nombre">Buscar por codigo </label>
+                <input type="text" class="clienteptex">
+            </div>
+    
+            <div class="mediotext">
+                <label for="ingresar-nombre">Buscar por categoria </label>
+                <input type="text" class="clienteptex">
+            </div>
+          
+    
+            <div class="clientept">
+                <label for="ingresar-nombre">Buscar por categoria </label>
+                <input type="text" class="clienteptex">
+            </div>
+        </div>
+        
+       
     </form>
     <div class="card-body">
         <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
             <div class="dataTable-top">
                 <div class="dataTable-dropdown">
-                    <table class="table table-striped dataTable-table" id="table1">
+                    <table class="table table-striped dataTable-table" id="table1" style="width:50%">
                         <thead>
                             <tr>
                                 <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
@@ -95,7 +114,12 @@
                         <tr>
 
                             <td>{{lista.nombre_productos}}</td>
-                            <td>{{lista.precioventa_productos}}</td>
+                            <td>{{lista.precioventa_productos}}
+                                <th data-sortable="" style="width:10.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                            
+                                    Añadir al carro
+                                  </a>
+                            </td>
 
                            
 
