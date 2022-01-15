@@ -1582,3 +1582,16 @@ footer div{
  padding-left: 1em;
 }
 
+.alineacion{
+  display: grid;
+  grid-template-columns: .3fr 1fr;
+}
+
+.contenedorfactura{
+   border:1px solid black
+
+}
+
+
+
+
