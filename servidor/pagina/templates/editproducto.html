@@ -118,6 +118,14 @@
     <script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
     <script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
     <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
+    <script>
+        function checker() {
+            var result = confirm('Estas seguro que quieres guardar este producto');
+            if (result == false) {
+                event.preventDefault();
+            }
+        }
+    </script>   
 
     <script src="{% static 'assets/js/main.js'%}"></script>
     {%endblock%}

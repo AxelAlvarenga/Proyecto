@@ -103,7 +103,12 @@
         </div>
 
         <div class="alineacion">
-            <div class="card-body">
+            
+              
+            
+            
+            <div class="card-body" style="overflow-y: auto;"  >
+                
                             <table class="table table-striped dataTable-table" id="table1" style="width:50%">
                                 <thead>
                                     <tr>
@@ -134,18 +139,46 @@
                                
                                 {%endfor%}
                             </table>
-            
+                    
             </div>
             <div class="contenedorfactura">
-                     
+                    
                             <table class="table table-striped dataTable-table" id="table2" style="width:1%">
                                 <thead>
+        
                                     <tr>
                                         <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
                                             class="dt">Nombre</a></th>
+                                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
+                                                class="dt">cantidad</a></th>
                                     </tr>
+                                    
                                 </thead>
+                                <tbody>
+                                    <tr>
+                                        
+                                    </tr>
+                                </tbody>
                             </table>
+                            <tr>
+                                <th data-sortable="dataTable-sorter" style="height: 2em; margin-top: 1m;"><a href="#" 
+                                    class="dt">Subtotal</a></th>    
+                            </tr>
+                           
+                          
+                </div>        
+            
+                        </div>
+                        <footer>
+                            <div class="footer clearfix mb-0 text-muted">
+                               
+                                    <button class="Vender">
+                                        Vender
+                                    </button>
+                            
+                
+                            </div>
+                        </footer>
             </div> 
         </div>
         
@@ -166,5 +199,23 @@
 <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
 
 <script src="{% static 'assets/js/main.js'%}"></script>
+<script>
+    function abrir () {
+        document.getElementById ("vent").style.display-"block";
+    }                        
+</script>
+<script>
+    var data=0;
+   document.getElementById ("root").innerText-data;
+   function decrement(){
+        data=data-1;
+        document.getElementById("root").innerText-data;
+        
+        }
+   function increment(){
+       data-data+1;
+      document.getElementById ("root").innerText=data;
+        }    
+</script>
 
 {%endblock%}

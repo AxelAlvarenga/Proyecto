@@ -1177,6 +1177,9 @@ border-radius : 50%;
 .table thead th, .dataTable-table thead th {
   border-bottom: 2px solid #475F7B;
 }
+.responsive{
+  white-space: nowrap;
+}
 
 .dataTable-container {
   overflow-x: auto;
@@ -1584,14 +1587,46 @@ footer div{
 
 .alineacion{
   display: grid;
-  grid-template-columns: .3fr 1fr;
+  grid-template-columns: .4fr 1fr;
+  height: 31em;
 }
 
 .contenedorfactura{
+   display:flex;
+   justify-content: space-between;
+   padding: 0 39px;
    border:1px solid black
 
+
+  
+}
+.Vender{
+  position:fixed; 
+  text-align: right;
+  width: 100%;
+  bottom: 0;
+  color: #0d6efd;
+  background: transparent;
+  border: 2px solid #2d3645;
+  border-radius: 6px;
+  text-align: center;
+}
+.Vender:hover {
+  background-color: #00ba2e;
+  color: white;
 }
 
+.ventana{
+    background: rgba (0,0,102,1);
+    width: 30%;
+    color:rgba (255,255,255,1);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:18px;
+    text-align: center;
+    padding:33px;
+    min-height:250px;
+    border-radius: 22px;
+}
 
 
 

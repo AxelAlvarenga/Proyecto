@@ -78,7 +78,7 @@
 
 
             <label for="ingresar-codigo">Número de telefono</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" name="telefono_cliente" value="{{datos_act.telefono_cliente}}">
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="telefonos_cliente" value="{{datos_act.telefono_cliente}}">
 
             <label for="ingresar-precio-compra">Direccion</label>
             <input type="text" class="form-control" id="formGroupExampleInput3" name="direccion_cliente" value="{{datos_act.direccion_cliente}}">
@@ -87,7 +87,7 @@
         <footer>
             <div class="footer clearfix mb-0 text-muted">
                 
-                    <button class="guardar-producto" type="submit">
+                    <button class="guardar-producto" onclick="checker()" type="submit">
                         Guardar cliente
                     </button>
 
@@ -132,7 +132,7 @@
                                 </td>
                         </tr>
                         {%endfor%}
-
+                    </table>
                 </div>
             </div>
             </body>
@@ -144,6 +144,14 @@
             <script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
             <script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
             <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
+            <script>
+                function checker() {
+                    var result = confirm('Estas seguro que quieres guardar este usuario');
+                    if (result == false) {
+                        event.preventDefault();
+                    }
+                }
+            </script> 
 
             <script src="{% static 'assets/js/main.js'%}"></script>
             {%endblock%}
