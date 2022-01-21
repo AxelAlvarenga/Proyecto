@@ -95,7 +95,7 @@ def editclientes(request, cliente_actual=0):
         if cliente_actual==0:
             cliente_nuevo=cliente(codigo_cliente=request.POST.get('codigo_cliente'),
             nombre_cliente=request.POST.get('nombre_cliente'),
-            telefono_cliente=request.POST.get('telefono_cliente'),
+            telefono_cliente=request.POST.get('telefonos_cliente'),
             direccion_cliente=request.POST.get("direccion_cliente"))
 
             cliente_nuevo.save()
@@ -149,10 +149,16 @@ def vender(request):
      
          {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla})
      
-def borrar(request,producto_actual ):
+def borrarproducto(request,producto_actual ):
 
     producto.objects.filter(codigo_productos= producto_actual).delete()
 
     return redirect("../buscar")
+
+def borrarcliente(request,cliente_actual ):
+
+    cliente.objects.filter(codigo_cliente= cliente_actual).delete()
+
+    return redirect("../editclientes/0")
     
 

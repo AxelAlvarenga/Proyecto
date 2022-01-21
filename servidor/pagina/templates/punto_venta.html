@@ -1,6 +1,44 @@
 {%extends 'Menu.html'%}
 {% load static %}
 {%block cuerpo%}
+<style>
+*{
+ box-sizing: border-box;
+
+ }
+
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.modal {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 30px 50px;
+  width: 600px;
+  max-width: 100%;
+  text-align: center;
+}
+.modal-container.show {
+   pointer-events: auto;
+   opacity: 1;
+}
+
+.modal h1{
+
+  margin:0;
+}
+</style>
 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 </div>
 </div>
@@ -109,26 +147,29 @@
             
             <div class="card-body" style="overflow-y: auto;"  >
                 
-                            <table class="table table-striped dataTable-table" id="table1" style="width:50%">
-                                <thead>
+                            <table class="table table-striped dataTable-table" id="table1" style="width:100%">
+                                <thead >
                                     <tr>
                                         <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
                                             class="dt">Nombre</a></th>
                                         <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
                                             class="dt">Precio</a></th>
+                                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
+                                                class="dt">ingresar Cantidad</a></th>
                                     </tr>
                                 </thead>
+                                
             
                                 {%for lista in listatabla%}
                                 <tr>
 
                                     <td>{{lista.nombre_productos}}</td>
-                                    <td>{{lista.precioventa_productos}}
-                                        <th data-sortable="" style="width:10.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                    <td>{{lista.precioventa_productos}}</td>
+                                    <td><input id="number" type="number" value="0" style="width: 5em;"></td>
+                                    <th data-sortable="" style="width:10.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                                 
-                                            Añadir al carro
-                                        </a>
-                                    </td>
+                                        Añadir al carro
+                                    </a>
 
                             
 
@@ -164,6 +205,7 @@
                                 <th data-sortable="dataTable-sorter" style="height: 2em; margin-top: 1m;"><a href="#" 
                                     class="dt">Subtotal</a></th>    
                             </tr>
+                            
                            
                           
                 </div>        
@@ -178,14 +220,17 @@
                             
                 
                             </div>
+                           
+                            
                         </footer>
             </div> 
         </div>
         
        
     </form>
+    
 
-        
+
                       
 
 </body>
@@ -199,23 +244,19 @@
 <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
 
 <script src="{% static 'assets/js/main.js'%}"></script>
+
+
 <script>
-    function abrir () {
-        document.getElementById ("vent").style.display-"block";
-    }                        
-</script>
-<script>
-    var data=0;
-   document.getElementById ("root").innerText-data;
-   function decrement(){
-        data=data-1;
-        document.getElementById("root").innerText-data;
-        
-        }
-   function increment(){
-       data-data+1;
-      document.getElementById ("root").innerText=data;
-        }    
+    const open = document.getElementById('open');
+    const modal_container = document.getElementById('modal_container');
+    const close = document.getElementById('close');
+    
+    open.addEventListener('click', () => {
+        modal_container.classList.add('show');
+    });
+    close.addEventListener('click', () => {
+        modal_container.classList.remove('show');
+    });
 </script>
 
 {%endblock%}

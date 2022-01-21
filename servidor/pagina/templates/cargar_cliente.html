@@ -87,7 +87,7 @@
         <footer>
             <div class="footer clearfix mb-0 text-muted">
                 
-                    <button class="guardar-producto" onclick="checker()" type="submit">
+                    <button class="guardar-producto" onclick="return confirm('Estas seguro que quieres guardar este usuario');" type="submit">
                         Guardar cliente
                     </button>
 
@@ -120,16 +120,21 @@
                             <td>{{lista.telefono_cliente}}</td>
                             <td>{{lista.direccion_cliente}}</td>
 
-                            <th data-sortable="" style="width:11.125%;"><a href="{%url 'editclientes' lista.codigo_cliente%}"
+                            <td><th data-sortable="" style="width:11.125%;"><a href="{%url 'editclientes' lista.codigo_cliente%}"
                                     class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                     data-original-title="Editar usuario">
                                     Editar
                                 </a></td>
-                                </td>
+                            <td>
+                                <th data-sortable="" style="width:10.125%;"><a onclick="return confirm('Estas seguro que quieres borrar este usuario');" href="{%url 'borrarcliente' lista.codigo_cliente %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
+                                            
+                                    borrar
+                                </a></td>
+                            </td>    
 
 
 
-                                </td>
+                                
                         </tr>
                         {%endfor%}
                     </table>
@@ -144,14 +149,7 @@
             <script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
             <script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
             <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
-            <script>
-                function checker() {
-                    var result = confirm('Estas seguro que quieres guardar este usuario');
-                    if (result == false) {
-                        event.preventDefault();
-                    }
-                }
-            </script> 
+           
 
             <script src="{% static 'assets/js/main.js'%}"></script>
             {%endblock%}
