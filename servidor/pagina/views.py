@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from pagina.models import Usuarios
 from pagina.models import producto
 from pagina.models import cliente
+from pagina.models import proveedor
 
 def login(request):
     if request.method == "GET":
@@ -140,7 +141,40 @@ def editclientes(request, cliente_actual=0):
 #             cliente_actual.save()
 
            
-#     return redirect("../editclientes/0")             
+#     return redirect("../editclientes/0")  
+      
+def editproveedor(request, proveedor_actual=0):
+    listaproveedor=proveedor.objects.all()
+    if request.method=="GET":
+        prov_actual=proveedor.objects.filter(codigo_proveedor=proveedor_actual).exists()
+        if prov_actual:
+            datos_proveedor=proveedor.objects.filter(codigo_proveedor=proveedor_actual).first()
+            return render(request, 'cargar_proveedor.html',
+            {"datos_act":datos_proveedor, "proveedor_actual":proveedor_actual, "titulo":"Editar Usuario","listaproveedor":listaproveedor})
+        else:
+            return render(request, "cargar_proveedor.html", {"nombre_completo":request.session.get("nombredelusuario"), "proveedor_actual":proveedor_actual, "titulo":"Cargar Usuario","listaproveedor":listaproveedor})
+
+    if request.method=="POST":
+        if proveedor_actual==0:
+            proveedor_nuevo=proveedor(codigo_proveedor=request.POST.get('codigo_proveedor'),
+            nombre_proveedor=request.POST.get('nombre_proveedor'),
+            ruc_proveedor=request.POST.get('ruc_proveedor'),
+            Telefono_proveedor=request.POST.get('Telefono_proveedor'),
+            direccion_proveedor=request.POST.get("direccion_proveedor"))
+            
+            proveedor_nuevo.save()
+
+        else:
+            proveedor_actual=proveedor.objects.get(codigo_proveedor=proveedor_actual)
+            proveedor_actual.nombre_proveedor=request.POST.get("nombre_proveedor")
+            proveedor_actual.ruc_proveedor=request.POST.get("ruc_proveedor")
+            proveedor_actual.Telefono_proveedor=request.POST.get("Telefono_proveedor")
+            proveedor_actual.direccion_proveedor=request.POST.get("direccion_proveedor")
+            proveedor_actual.save() 
+
+        return redirect("../cargar_proveedor/0")
+
+   
 
 def vender(request):
   
@@ -160,5 +194,11 @@ def borrarcliente(request,cliente_actual ):
     cliente.objects.filter(codigo_cliente= cliente_actual).delete()
 
     return redirect("../editclientes/0")
+
+def borrarproveedor(request,proveedor_actual ):
+
+    proveedor.objects.filter(codigo_proveedor= proveedor_actual).delete()
+
+    return redirect("../cargar_proveedor/0")
     
 

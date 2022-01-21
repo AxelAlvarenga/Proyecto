@@ -28,4 +28,10 @@ class categoria(models.Model):
     cogigo_categoria=models.IntegerField(primary_key=True)
     nombre_categoria=models.CharField(max_length = 50)   
 
+class proveedor(models.Model):
+    codigo_proveedor=models.AutoField(primary_key=True)
+    nombre_proveedor= models.CharField(max_length = 50)
+    ruc_proveedor= models.CharField(max_length = 50)
+    Telefono_proveedor= models.IntegerField()
+    direccion_proveedor=models.CharField(max_length= 50)
 

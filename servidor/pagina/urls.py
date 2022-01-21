@@ -10,5 +10,8 @@ path('editclientes/<int:cliente_actual>', views.editclientes ,name='editclientes
 # path('editusuarios/<int:usuario_actual>', views.editusuarios ,name='editusuarios'),
 path('vender', views.vender ,name='vender'),
 path('borrarproducto/<int:producto_actual>', views.borrarproducto , name='borrarproducto'),
-path('borrarcliente/<int:cliente_actual>', views.borrarcliente , name='borrarcliente')
+path('borrarcliente/<int:cliente_actual>', views.borrarcliente , name='borrarcliente'),
+path('borrarproveedor/<int:proveedor_actual>', views.borrarproveedor , name='borrarproveedor'),
+path('cargar_proveedor/<int:proveedor_actual>', views.editproveedor , name='cargar_proveedor')
+
 ]

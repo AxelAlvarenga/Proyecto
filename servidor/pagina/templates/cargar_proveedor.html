@@ -1,0 +1,165 @@
+{%extends 'Menu.html'%}
+{% load static %}
+{%block cuerpo%}
+<button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+</div>
+</div>
+<div id="main">
+    <nav class="navbar navbar-header navbar-expand navbar-light">
+        <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+        <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
+                <li class="dropdown nav-icon">
+                    <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+                        <div class="d-lg-inline-block">
+                            <i data-feather="bell"></i>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-large">
+                        <h6 class='py-2 px-4'>Notifications</h6>
+                        <ul class="list-group rounded-none">
+                            <li class="list-group-item border-0 align-items-start">
+                                <div class="avatar bg-success mr-3">
+                                    <span class="avatar-content"><i data-feather="shopping-cart"></i></span>
+                                </div>
+                                <div>
+                                    <h6 class='text-bold'>New Order</h6>
+                                    <p class='text-xs'>
+
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="dropdown nav-icon mr-2">
+                    <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+                        <div class="d-lg-inline-block">
+                            <i data-feather="mail"></i>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i data-feather="user"></i> cuenta</a>
+                        <a class="dropdown-item" href="#"><i data-feather="settings"></i> Configuración</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.html"><i data-feather="log-out"></i>Cerrar sesión</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        <div class="avatar mr-1">
+                            <img src="{% static 'assets/images/avatar/avatar-1.jpg'%}" alt="" srcset="">
+                        </div>
+                        <div class="d-none d-md-block d-lg-inline-block">Hola, {{nombre_completo}}</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i data-feather="user"></i> cuenta</a>
+                        <a class="dropdown-item" href="#"><i data-feather="settings"></i> Configuración</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.html"><i data-feather="log-out"></i>Cerrar sesión</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <form action="{% url 'cargar_proveedor' proveedor_actual %}" method="POST">
+        {% csrf_token %}
+        <div class="forma">
+            <label for="ingresar-codigo">Nombre completo</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="nombre_proveedor"
+                value="{{datos_act.nombre_proveedor}}">
+
+            <label for="ingresar-precio-compra">Ruc</label>
+            <input type="text" class="form-control" id="formGroupExampleInput4" name="ruc_proveedor"
+                value="{{datos_act.ruc_proveedor}}">
+
+            <label for="ingresar-cantidad">Telefono</label>
+            <input type="text" class="form-control" id="formGroupExampleInput5" name="Telefono_proveedor"
+                value="{{datos_act.Telefono_proveedor}}">
+
+            <label for="ingresar-cantidad">Direccion</label>
+            <input type="text" class="form-control" id="formGroupExampleInput5" name="direccion_proveedor"
+                value="{{datos_act.direccion_proveedor}}">
+
+
+        </div>
+        <footer>
+            <div class="footer clearfix mb-0 text-muted">
+
+                <button class="guardar-producto" type="submit">
+                    Guardar nuevo usuario
+                </button>
+
+            </div>
+        </footer>
+    </form>
+    <div class="card-body">
+        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+            <div class="dataTable-top">
+                <div class="dataTable-dropdown">
+                    <table class="table table-striped dataTable-table" id="table1">
+                        <thead>
+
+                            <tr>
+                                <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                                        class="dataTable-sorter">Nombre</a></th>
+                                <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                                        class="dataTable-sorter">Codigo</a></th>
+                                <th data-sortable="" style="width: 20.8988%;"><a href="#"
+                                        class="dataTable-sorter">RUC</a></th>
+                                <th data-sortable="" style="width: 22.1386%;"><a href="#"
+                                        class="dataTable-sorter">Telefono</a></th>
+                                <th data-sortable="" style="width: 22.1386%;"><a href="#"
+                                        class="dataTable-sorter">Direccion</a></th>
+                                <th data-sortable="" style="width: 22.1386%;"><a href="#"
+                                        class="dataTable-sorter">Acciones</a></th>
+                            </tr>
+
+                        </thead>
+
+                        {%for lista in listaproveedor%}
+                            <tr>
+
+                                <td>{{lista.nombre_proveedor}}</td>
+                                <td>{{lista.codigo_proveedor}}</td>
+                                <td>{{lista.ruc_proveedor}}</td>
+                                <td>{{lista.Telefono_proveedor}}</td>
+                                <td>{{lista.direccion_proveedor}}</td>
+
+                                <td data-sortable="" style="width:11.125%;"><a
+                                        href="{%url 'cargar_proveedor' lista.codigo_proveedor%}"
+                                        class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                        data-original-title="Editar usuario">
+                                        Editar
+                                    </a>
+                                    <a href="{% url 'borrarproveedor' lista.codigo_proveedor %}"
+                                        class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                        data-original-title="borrar registro">Borrar</a>
+                                </td>
+
+
+
+
+
+                            </tr>
+                        {%endfor%}
+                    </table>
+                </div>
+            </div>
+            </body>
+
+            </html>
+            <script src="{% static 'assets/js/feather-icons/feather.min.js'%}"></script>
+            <script src="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+            <script src="{% static 'assets/js/app.js'%}"></script>
+            <script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
+            <script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
+            <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
+
+
+            <script src="{% static 'assets/js/main.js'%}"></script>
+            {%endblock%}
