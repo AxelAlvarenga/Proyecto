@@ -74,7 +74,7 @@
 
                     </li>
 
-                    <li class="sidebar-item" id="sidebar-item2">
+                    <li class="sidebar-item" id="sidebar-item4">
                         <a href="{% url 'vender'%}" class="sidebar-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -122,16 +122,20 @@
     var sidebar = document.getElementById('sidebar-item1')
     var sidebar2 = document.getElementById('sidebar-item2')
     var sidebar3 = document.getElementById('sidebar-item3')
+    var sidebar4 = document.getElementById('sidebar-item4')
     //SE TRAE LOS ELEMENTOS DE HTML AL JAVASCRIPT
 
     //SE VALIDA EN QUE RUTA ESTAS POSICIONADO
-    if (window.location.pathname == '/pagina/cargar_cliente.html') {
+    if (window.location.pathname == '/pagina/editclientes/0') {
         //SE LE AÑADE EL ATRIBUTO active PARA QUE QUEDE MARCADO
         sidebar.className += ' active'
-    } else if (window.location.pathname == '/pagina/buscar' || window.location.pathname == '/pagina/editproducto') {
+    } else if (window.location.pathname == '/pagina/buscar'|| window.location.pathname == '/pagina/inicio') {
         sidebar2.className += ' active'
     
     }else if (window.location.pathname == '/pagina/index.html'){
         sidebar3.className += ' active'
+    }
+    else if (window.location.pathname == '/pagina/vender'){
+        sidebar4.className += ' active'
     }
 </script>
