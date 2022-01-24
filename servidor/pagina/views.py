@@ -112,6 +112,37 @@ def editclientes(request, cliente_actual=0):
            
     return redirect("../editclientes/0")
 
+def reportescliente(request, cliente_actual=0):
+    listaclientes=cliente.objects.all()
+    if request.method=="GET":
+        clie_actual=cliente.objects.filter(codigo_cliente=cliente_actual).exists()
+        if clie_actual:
+            datos_cliente=cliente.objects.filter(codigo_cliente=cliente_actual).first()
+            return render(request, 'cargar_cliente.html',
+            {"datos_act":datos_cliente, "cliente_actual":cliente_actual, "titulo":"Editar Usuario" , "listaclientes":listaclientes})
+        else:
+            return render(request, "cargar_cliente.html", {"nombre_completo":request.session.get("nombredelusuario"), "cliente_actual":cliente_actual, "titulo":"Cargar Usuario" , "listaclientes":listaclientes})
+
+    if request.method=="POST":
+        if cliente_actual==0:
+            cliente_nuevo=cliente(codigo_cliente=request.POST.get('codigo_cliente'),
+            nombre_cliente=request.POST.get('nombre_cliente'),
+            telefono_cliente=request.POST.get('telefonos_cliente'),
+            direccion_cliente=request.POST.get("direccion_cliente"))
+
+            cliente_nuevo.save()
+        else:
+            cliente_actual=cliente.objects.get(codigo_cliente=cliente_actual)
+            cliente_actual.nombre_cliente=request.POST.get("nombre_cliente")
+            cliente_actual.codigo_cliente=request.POST.get("codigo_cliente")
+            cliente_actual.direccion_cliente=request.POST.get("direccion_cliente")
+            cliente_actual.telefono_cliente=request.POST.get("telefonos_cliente")
+
+            cliente_actual.save()
+
+           
+    return redirect("../reportes_cliente")
+
 # def editusuarios(request, usuario_actual=0):
 #     listausuarios=Usuarios.objects.all()
 #     if request.method=="GET":
