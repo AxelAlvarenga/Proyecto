@@ -88,11 +88,11 @@
                 seleccionar categoria de producto
             </div>
             <select class="dataTable-selector form-select" name="categoria_productos">
-                <option value="5">Snacks</option>
-                <option value="10" selected="">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
+                {% for categoria in listacategoria%}
+                <option value="{{categoria.codigo_categoria}}" {% if categoria.codigo_categoria == datos_act.categoria_productos %} selected {% endif %}>
+                    {{categoria.nombre_categoria}}
+                </option>
+                {% endfor %}
             </select>
 
 

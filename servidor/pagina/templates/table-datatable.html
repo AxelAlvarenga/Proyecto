@@ -98,28 +98,35 @@
                                 </thead>
                                 
                                     {%for lista in listatabla%}
-                                    <tr>
+                                    
+                                <tr>
                                     
                                     <td>{{lista.nombre_productos}}</td>
                                     <td>{{lista.codigo_productos}}</td>
                                     <td>{{lista.preciocompra_productos}}</td>
                                     <td>{{lista.precioventa_productos}}</td>
-                                    <td>{{lista.categoria_productos}}</td>
-                                    <td>{{lista.cantidad_productos}}
-                                        <th data-sortable="" style="width:10.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                    
+                                    {% for categoria in listacategoria %}
+                                    {% if categoria.codigo_categoria == lista.categoria_productos %}     
+                                    <td>{{categoria.nombre_categoria}}</td>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <td>{{lista.cantidad_productos}}</td>
+                                        <td><th data-sortable=""><a href="{%url 'editproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                             
                                             Editar 
-                                          </a></td>
-                                        <th data-sortable="" style="width:10.125%;"><a onclick="checker()" href="{%url 'borrarproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
-                                            
-                                            borrar
-                                        </a></td>
-                                    </td>
+                                          </a>
+                                        <th data-sortable=""><a onclick="checker()" href="{%url 'borrarproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
+                                                
+                                                borrar
+                                            </a></td>
+                                        
                                     
                                 
                                     
-                                </td>
+                                
                                 </tr>
+                
                                 {%endfor%}                                            
                                       
                         </div>

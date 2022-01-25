@@ -4,6 +4,7 @@ from pagina.models import Usuarios
 from pagina.models import producto
 from pagina.models import cliente
 from pagina.models import proveedor
+from pagina.models import categoria
 
 def login(request):
     if request.method == "GET":
@@ -42,22 +43,21 @@ def verproducto(request):
 
 
 def buscar(request):
-  
-         listatabla=producto.objects.all()
-         return render(request, "table-datatable.html",
-     
-         {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla})
+    listacategoria = categoria.objects.all()
+    listatabla=producto.objects.all()
+    return render(request, "table-datatable.html", {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla, "listacategoria":listacategoria})
 
 def editproducto(request, producto_actual=0):
+    listacategoria = categoria.objects.all()
     if request.method=="GET":
         product_actual=producto.objects.filter(codigo_productos=producto_actual).exists()
         if product_actual:
             datos_producto=producto.objects.filter(codigo_productos=producto_actual).first()
             return render(request, 'editproducto.html',
-            {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario"})
+            {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario", "listacategoria":listacategoria})
         else:
             return render(request, "editproducto.html",
-            {"nombre_completo":request.session.get("nombre_completo"), "producto_actual":producto_actual, "titulo":"Cargar Usuario"})
+            {"nombre_completo":request.session.get("nombre_completo"), "producto_actual":producto_actual, "titulo":"Cargar Usuario", "listacategoria":listacategoria})
 
     if request.method=="POST":
         if producto_actual==0:

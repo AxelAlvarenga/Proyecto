@@ -1576,11 +1576,14 @@ footer div{
 }
 .busqueda{
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 100%;
-  margin-top: 1em;
-
 }
+
+.busqueda div {
+  margin: 1em 0 1em 1em;
+}
+
 .clientept{
  padding-left: 1em;
 }
