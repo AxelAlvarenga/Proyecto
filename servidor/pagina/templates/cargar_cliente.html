@@ -85,20 +85,28 @@
 
         </div>
         <footer>
-            <div class="footer clearfix mb-0 text-muted">
-                
-                    <button class="guardar-producto" onclick="return confirm('Estas seguro que quieres guardar este usuario');" type="submit">
-                        Guardar cliente
-                    </button>
+            
+                <div class="busqueda">
+                    <div>
+                        <label for="ingresar-nombre">Buscar cliente </label>
+                        <input type="text" class="clienteptex" id="buscar"> <!-- ID de "buscar" para realizar busqueda-->
+                    </div>
+                </div>
+                <div class="footer clearfix mb-0 text-muted">
+                    
+                        <button class="guardar-producto" onclick="return confirm('Estas seguro que quieres guardar este usuario');" type="submit">
+                            Guardar cliente
+                        </button>
 
-            </div>
+                </div>
+            
         </footer>
     </form>
     <div class="card-body">
         <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
             <div class="dataTable-top">
                 <div class="dataTable-dropdown">
-                    <table class="table table-striped dataTable-table" id="table1">
+                    <table class="table table-striped dataTable-table" id="tabla">
                         <thead>
                             <tr>
                                 <th data-sortable="" style="width: 23.2012%;"><a href="#"
@@ -143,6 +151,7 @@
             </body>
 
             </html>
+            <script src="{% static 'assets/js/search.js' %}"></script> <!-- Script para busqueda-->
             <script src="{% static 'assets/js/feather-icons/feather.min.js'%}"></script>
             <script src="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
             <script src="{% static 'assets/js/app.js'%}"></script>

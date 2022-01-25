@@ -88,6 +88,12 @@
 
         </div>
         <footer>
+            <div class="busqueda">
+                <div>
+                    <label for="ingresar-nombre">Buscar provedor </label>
+                    <input type="text" class="clienteptex" id="buscar"> <!-- ID de "buscar" para realizar busqueda-->
+                </div>
+            </div>
             <div class="footer clearfix mb-0 text-muted">
 
                 <button class="guardar-producto" type="submit">
@@ -101,7 +107,7 @@
         <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
             <div class="dataTable-top">
                 <div class="dataTable-dropdown">
-                    <table class="table table-striped dataTable-table" id="table1">
+                    <table class="table table-striped dataTable-table" id="tabla">
                         <thead>
 
                             <tr>
@@ -159,6 +165,7 @@
             <script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
             <script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
             <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
+            <script src="{% static 'assets/js/search.js' %}"></script> <!-- Script para busqueda-->
 
 
             <script src="{% static 'assets/js/main.js'%}"></script>
