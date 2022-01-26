@@ -144,41 +144,38 @@ def reportescliente(request, cliente_actual=0):
            
     return redirect("../reportes_cliente")
 
-def verusuarios(request):
-    listatabla=Usuarios.objects.all()
-    return render(request, "verusuario.html",
-     {"nombre_completo":request.session.get("nombre_completo"),"listatabla":listatabla}) 
 
 def modusuarios(request, usuario_actual=0):
+    listatabla=Usuarios.objects.all()
     if request.method=="GET":
         usu_actual=Usuarios.objects.filter(cod_usuario = usuario_actual).exists()
         if usu_actual:
             datos_usuario=Usuarios.objects.filter(cod_usuario=usuario_actual).first()
-            return render(request, 'modusuario.html',
-            {"datos_act":datos_usuario, "usuario_actual":usuario_actual, "titulo":"Editar Usuario"})
+            return render(request, 'verusuario.html',
+            {"datos_act":datos_usuario, "usuario_actual":usuario_actual, "titulo":"Editar Usuario", "listatabla":listatabla})
         else:
-            return render(request, "modusuario.html", {"nombre_completo":request.session.get("nombre_completo"), "usuario_actual":usuario_actual, "titulo":"Modificar Usuario"})
+            return render(request, "verusuario.html", {"nombre_completo":request.session.get("nombredelusuario"), "usuario_actual":usuario_actual, "titulo":"Modificar Usuario" ,"listatabla":listatabla})
 
     if request.method=="POST":
         if usuario_actual==0:
             usuario_nuevo=Usuarios(cod_usuario=request.POST.get('cod_usuario'),
-            nombre_completo=request.POST.get('nombre_completo'),
-            usuario=request.POST.get('usuario'),
-            clave=request.POST.get('clave'))
+            nombre_completo=request.POST.get('nombre_completo_usuario'),
+            usuario=request.POST.get('nombre_usuario'),
+            clave=request.POST.get('password_usuario'))
 
             usuario_nuevo.save()
         else:
             usuario_actual=Usuarios.objects.get(cod_usuario=usuario_actual)
-            usuario_actual.nombre_completo_usuario=request.POST.get("nombre_completo")
-            usuario_actual.nombre_usuario=request.POST.get("usuario")
-            usuario_actual.password_usuario=request.POST.get("clave")
+            usuario_actual.nombre_completo_usuario=request.POST.get("nombre_completo_usuario")
+            usuario_actual.nombre_usuario=request.POST.get("nombre_usuario")
+            usuario_actual.password_usuario=request.POST.get("password_usuario")
             usuario_actual.save() 
 
-        return redirect ("../verusuario")
+        return redirect ("../modusuarios/0")
 
 def borusuario (request, usuario_actual):
     Usuarios.objects.filter(cod_usuario = usuario_actual).delete()
-    return redirect ("../verusuario")
+    return redirect ("../modusuarios/0")
       
 def editproveedor(request, proveedor_actual=0):
     listaproveedor=proveedor.objects.all()
@@ -231,6 +228,7 @@ def borrarcliente(request,cliente_actual ):
     cliente.objects.filter(codigo_cliente= cliente_actual).delete()
 
     return redirect("../editclientes/0")
+
 
 def borrarproveedor(request,proveedor_actual ):
 

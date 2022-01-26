@@ -6,7 +6,8 @@ from django.db.models.base import ModelState
 
 
 class Usuarios(models.Model):
-    nombre_usuario = models.CharField(max_length = 50,primary_key=True, null=False)
+    cod_usuario=models.AutoField(primary_key=True)
+    nombre_usuario = models.CharField(max_length = 50)
     password_usuario = models.CharField(max_length = 50)
     nombre_completo_usuario = models.CharField(max_length = 200)
 

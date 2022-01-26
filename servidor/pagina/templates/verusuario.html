@@ -1,36 +1,37 @@
+
 {%extends 'cabecera.html'%}
 {% load static %}
 {%block cabecera%}
-    <form action="{% url 'editclientes' cliente_actual %}" method="POST">
+
+
+    <form action="{% url 'modusuarios' usuario_actual  %}" method="POST">
         {% csrf_token %}
         <div class="forma">
-            <label for="ingresar-nombre">Numero de cedula</label>
-            <input type="text" class="form-control" id="formGroupExampleInput1" name="codigo_cliente" value="{{datos_act.codigo_cliente}}">
   
 
             <label for="ingresar-nombre">Nombre completo</label>
-            <input type="text" class="form-control" id="formGroupExampleInput1" name="nombre_cliente" value="{{datos_act.nombre_cliente}}">
+            <input type="text" class="form-control" id="formGroupExampleInput1" name="nombre_completo_usuario" value="{{datos_act.nombre_completo_usuario}}">
 
 
             <label for="ingresar-codigo">Número de telefono</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" name="telefonos_cliente" value="{{datos_act.telefono_cliente}}">
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="nombre_usuario" value="{{datos_act.nombre_usuario}}">
 
-            <label for="ingresar-precio-compra">Direccion</label>
-            <input type="text" class="form-control" id="formGroupExampleInput3" name="direccion_cliente" value="{{datos_act.direccion_cliente}}">
+            <label for="ingresar-precio-compra">contraseña</label>
+            <input type="text" class="form-control" id="formGroupExampleInput3" name="password_usuario" value="{{datos_act.password_usuario}}">
 
         </div>
         <footer>
             
                 <div class="busqueda">
                     <div>
-                        <label for="ingresar-nombre">Buscar cliente </label>
+                        <label for="ingresar-nombre">Buscar usuario </label>
                         <input type="text" class="clienteptex" id="buscar"> <!-- ID de "buscar" para realizar busqueda-->
                     </div>
                 </div>
                 <div class="footer clearfix mb-0 text-muted">
                     
                         <button class="guardar-producto" onclick="return confirm('Estas seguro que quieres guardar este usuario');" type="submit">
-                            Guardar cliente
+                            Guardar usuario
                         </button>
 
                 </div>
@@ -45,34 +46,33 @@
                         <thead>
                             <tr>
                                 <th data-sortable="" style="width: 23.2012%;"><a href="#"
-                                    class="dataTable-sorter">Cedula</a></th>
+                                    class="dataTable-sorter">Codigo Usuario</a></th>
+                                <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                                        class="dataTable-sorter">Nombre completo</a></th>
                                 <th data-sortable="" style="width: 23.2012%;"><a href="#"
                                         class="dataTable-sorter">Nombre</a></th>
-                                <th data-sortable="" style="width: 23.2012%;"><a href="#"
-                                        class="dataTable-sorter">telefono</a></th>
-                                <th data-sortable="" style="width: 20.8988%;"><a href="#"
-                                        class="dataTable-sorter">direccion</a>
+
                             </tr>
                         </thead>
 
-                        {%for lista in listaclientes%}
+                        {%for lista in listatabla%}
                         <tr>
 
-                            <td>{{lista.codigo_cliente}}</td>
-                            <td>{{lista.nombre_cliente}}</td>
-                            <td>{{lista.telefono_cliente}}</td>
-                            <td>{{lista.direccion_cliente}}</td>
+                            <td>{{lista.cod_usuario}}</td>
+                            <td>{{lista.nombre_completo_usuario}}</td>
+                            <td>{{lista.nombre_usuario}}</td>
+                            
 
-                            <td><th data-sortable="" style="width:11.125%;"><a href="{%url 'editclientes' lista.codigo_cliente%}"
+                            <td><th data-sortable="" style="width:11.125%;"><a href="{%url 'modusuarios' lista.cod_usuario %}"
                                     class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                     data-original-title="Editar usuario">
                                     Editar
                                 </a></td>
                             <td>
-                                <th data-sortable="" style="width:10.125%;"><a onclick="return confirm('Estas seguro que quieres borrar este usuario');" href="{%url 'borrarcliente' lista.codigo_cliente %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
+                                 <th data-sortable="" style="width:10.125%;"><a onclick="return confirm('Estas seguro que quieres borrar este usuario');" href="{%url 'borusuario' lista.cod_usuario %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
                                             
                                     borrar
-                                </a></td>
+                                </a></td> 
                             </td>    
 
 
