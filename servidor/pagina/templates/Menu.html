@@ -36,14 +36,8 @@
                         <li class='sidebar-title'>Mi Menú </li>
                         <li class="sidebar-item" id="sidebar-item4">
                             <a href="{% url 'vender'%}" class="sidebar-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file-plus">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="12" y1="18" x2="12" y2="12"></line>
-                                    <line x1="9" y1="15" x2="15" y2="15"></line>
-                                </svg>
+                                <i class="fas fa-cart-plus"></i>
+                                
                                 <span>Punto Venta</span>
                             </a>
                         </li>
@@ -51,13 +45,7 @@
 
                         <li class="sidebar-item" id="sidebar-item1">
                             <a href="{% url 'editclientes' 0 %}" class='sidebar-link'>
-                                <img src="{% static 'assets/images/atencion-al-cliente.png'%}" width="20" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="12" y1="18" x2="12" y2="12"></line>
-                                <line x1="9" y1="15" x2="15" y2="15"></line>
+                                <i class="fas fa-users"></i>
                                 <span>Clientes</span>
                             </a>
 
@@ -66,14 +54,7 @@
 
                         <li class="sidebar-item" id="sidebar-item2">
                             <a href="{% url 'buscar'%}" class="sidebar-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file-plus">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="12" y1="18" x2="12" y2="12"></line>
-                                    <line x1="9" y1="15" x2="15" y2="15"></line>
-                                </svg>
+                                <i class="fas fa-shopping-basket"></i>
                                 <span>Producto</span>
                             </a>
                         </li>
@@ -84,21 +65,14 @@
 
                     <li class="sidebar-item" id="sidebar-item5">
                         <a href="{% url 'cargar_proveedor' 0 %}" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-file-plus">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="12" y1="18" x2="12" y2="12"></line>
-                                <line x1="9" y1="15" x2="15" y2="15"></line>
-                            </svg>
+                            <i class="fas fa-truck-moving"></i>
                             <span>Proveedores</span>
                         </a>
                     </li>
                 </li>
                 <li class="sidebar-item" id="sidebar-item3">
                     <a href="{% url 'inicio'%}"class='sidebar-link'>
-                        <i data-feather="home" width="20"></i>
+                        <i class="fas fa-paste"></i>
                         <span>Reportes</span>
                     </a>
 

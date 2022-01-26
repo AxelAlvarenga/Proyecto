@@ -67,7 +67,7 @@
                                         class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                         data-original-title="Edit user">
 
-                                        Editar
+                                        <i class="fas fa-edit"></i>
                                     </a>
                                 <th data-sortable=""><a onclick="checker()"
                                         href="{%url 'borrarproducto' lista.codigo_productos %}"
@@ -76,7 +76,7 @@
                                         data-original-title="Delete user">
                                         
 
-                                        borrar
+                                        <i class="fas fa-trash"></i>
                                     </a></td>
 
 
@@ -119,7 +119,7 @@
 <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
 <script>
     function checker() {
-        var result = confirm('Estas seguro que quieres borrar este usuario?');
+        var result = confirm('Estas seguro que quieres borrar este producto?');
         if (result == false) {
             event.preventDefault();
         }

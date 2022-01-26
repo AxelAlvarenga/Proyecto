@@ -75,11 +75,12 @@
                                         href="{%url 'cargar_proveedor' lista.codigo_proveedor%}"
                                         class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                         data-original-title="Editar usuario">
-                                        Editar
+                                        <i class="fas fa-edit"></i>
                                     </a>
                                     <a href="{% url 'borrarproveedor' lista.codigo_proveedor %}"
+                                    onclick="return confirm('Estas seguro que quieres borrar este proveedor');"
                                         class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                        data-original-title="borrar registro">Borrar</a>
+                                        data-original-title="borrar registro"><i class="fas fa-trash"></i></a>
                                 </td>
 
 
