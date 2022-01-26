@@ -33,13 +33,14 @@ def validar(request, pageSuccess):
         return render(request, 'login.html')           
 def inicio(request):
    return validar(request,"index.html")
+def verproducto(request):
+    return validar(request,"table-datatable.html")
 
 def salir(request):
     request.session.flush()
     return redirect("./")
 
-def verproducto(request):
-    return validar(request,"table-datatable.html")
+
 
 
 def buscar(request):
@@ -143,36 +144,41 @@ def reportescliente(request, cliente_actual=0):
            
     return redirect("../reportes_cliente")
 
-# def editusuarios(request, usuario_actual=0):
-#     listausuarios=Usuarios.objects.all()
-#     if request.method=="GET":
-#         usu_actual=Usuarios.objects.filter(codigo_cliente=usuario_actual).exists()
-#         if usu_actual:
-#             datos_usuario=Usuarios.objects.filter(codigo_cliente=usuario_actual).first()
-#             return render(request, 'cargar_usuario.html',
-#             {"datos_act":datos_usuario, "usuario_actual":usuario_actual, "titulo":"Editar Usuario" , "listausuarios":listausuarios})
-#         else:
-#             return render(request, "cargar_cliente.html", {"nombre_completo":request.session.get("nombre_completo"), "cliente_actual":cliente_actual, "titulo":"Cargar Usuario" , "listaclientes":listaclientes})
+def verusuarios(request):
+    listatabla=Usuarios.objects.all()
+    return render(request, "verusuario.html",
+     {"nombre_completo":request.session.get("nombre_completo"),"listatabla":listatabla}) 
 
-#     if request.method=="POST":
-#         if cliente_actual==0:
-#             cliente_nuevo=cliente(codigo_cliente=request.POST.get('codigo_cliente'),
-#             nombre_cliente=request.POST.get('nombre_cliente'),
-#             telefono_cliente=request.POST.get('telefono_cliente'),
-#             direccion_cliente=request.POST.get("direccion_cliente"))
+def modusuarios(request, usuario_actual=0):
+    if request.method=="GET":
+        usu_actual=Usuarios.objects.filter(cod_usuario = usuario_actual).exists()
+        if usu_actual:
+            datos_usuario=Usuarios.objects.filter(cod_usuario=usuario_actual).first()
+            return render(request, 'modusuario.html',
+            {"datos_act":datos_usuario, "usuario_actual":usuario_actual, "titulo":"Editar Usuario"})
+        else:
+            return render(request, "modusuario.html", {"nombre_completo":request.session.get("nombre_completo"), "usuario_actual":usuario_actual, "titulo":"Modificar Usuario"})
 
-#             cliente_nuevo.save()
-#         else:
-#             cliente_actual=cliente.objects.get(codigo_cliente=cliente_actual)
-#             cliente_actual.nombre_cliente=request.POST.get("nombre_cliente")
-#             cliente_actual.codigo_cliente=request.POST.get("codigo_cliente")
-#             cliente_actual.direccion_cliente=request.POST.get("direccion_cliente")
-#             cliente_actual.telefono_cliente=request.POST.get("telefonos_cliente")
+    if request.method=="POST":
+        if usuario_actual==0:
+            usuario_nuevo=Usuarios(cod_usuario=request.POST.get('cod_usuario'),
+            nombre_completo=request.POST.get('nombre_completo'),
+            usuario=request.POST.get('usuario'),
+            clave=request.POST.get('clave'))
 
-#             cliente_actual.save()
+            usuario_nuevo.save()
+        else:
+            usuario_actual=Usuarios.objects.get(cod_usuario=usuario_actual)
+            usuario_actual.nombre_completo_usuario=request.POST.get("nombre_completo")
+            usuario_actual.nombre_usuario=request.POST.get("usuario")
+            usuario_actual.password_usuario=request.POST.get("clave")
+            usuario_actual.save() 
 
-           
-#     return redirect("../editclientes/0")  
+        return redirect ("../verusuario")
+
+def borusuario (request, usuario_actual):
+    Usuarios.objects.filter(cod_usuario = usuario_actual).delete()
+    return redirect ("../verusuario")
       
 def editproveedor(request, proveedor_actual=0):
     listaproveedor=proveedor.objects.all()

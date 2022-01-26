@@ -2,42 +2,44 @@
 {% load static %}
 {%block cuerpo%}
 <style>
-*{
- box-sizing: border-box;
+    * {
+        box-sizing: border-box;
 
- }
+    }
 
-.modal-container {
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  opacity: 0;
-  pointer-events: none;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-}
-.modal {
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  padding: 30px 50px;
-  width: 600px;
-  max-width: 100%;
-  text-align: center;
-}
-.modal-container.show {
-   pointer-events: auto;
-   opacity: 1;
-}
+    .modal-container {
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        opacity: 0;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+    }
 
-.modal h1{
+    .modal {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 30px 50px;
+        width: 600px;
+        max-width: 100%;
+        text-align: center;
+    }
 
-  margin:0;
-}
+    .modal-container.show {
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    .modal h1 {
+
+        margin: 0;
+    }
 </style>
 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 </div>
@@ -81,7 +83,6 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i data-feather="user"></i> cuenta</a>
                         <a class="dropdown-item" href="#"><i data-feather="settings"></i> Configuración</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="login.html"><i data-feather="log-out"></i>Cerrar sesión</a>
@@ -95,7 +96,6 @@
                         <div class="d-none d-md-block d-lg-inline-block">Hola, {{nombre_completo}}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i data-feather="user"></i> cuenta</a>
                         <a class="dropdown-item" href="#"><i data-feather="settings"></i> Configuración</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="login.html"><i data-feather="log-out"></i>Cerrar sesión</a>
@@ -105,22 +105,29 @@
         </div>
     </nav>
     <form>
-        
+
         <div class="clientept">
             <div>
                 <label for="ingresar-nombre">Cedula de cliente </label>
-                <input type="text" class="clienteptex"> 
-            </div>
-            <div class="forma">
-                <label><input type="checkbox" id="cbox1" value="first_checkbox" > Cliente casual</label>
+                <input type="text" class="clienteptex">
+                {%for lista in listaclientes%}
+                <td>{{lista.codigo_cliente}}</td>
+                {%endfor%}
 
             </div>
-            
-            
+            <div class="forma">
+                <label><input type="checkbox" id="cbox1" value="first_checkbox"> Cliente casual</label>
+
+            </div>
+
+
         </div>
         <div class="clientept">
-            <label for="ingresar-nombre">Nombre del Cliente </label>
-            <input type="text" class="clienteptex">
+            <label for="ingresar-nombre">Nombre del Cliente: </label>
+           
+            {%for lista in listaclientes%}
+                <td>{{lista.nombre_cliente}}</td>
+            {%endfor%}
         </div>
         <div class="busqueda">
             <div>
@@ -130,97 +137,101 @@
         </div>
 
         <div class="alineacion">
-            
-              
-            
-            
-            <div class="card-body" style="overflow-y: auto;"  >
-                
-                            <table class="table table-striped dataTable-table" id="tabla" style="width:100%"> <!-- ID de "tabla" para realizar busqueda-->
-                                <thead >
-                                    <tr>
-                                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
-                                            class="dt">Nombre</a></th>
-                                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
-                                            class="dt">Precio</a></th>
-                                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
-                                                class="dt">ingresar Cantidad</a></th>
-                                    </tr>
-                                </thead>
-                                
-            
-                                {%for lista in listatabla%}
-                                <tr>
-                                    <td style="display: none;">{{lista.codigo_productos}}</td>
-                                    <td>{{lista.nombre_productos}}</td>
-                                    <td>{{lista.precioventa_productos}}</td>
-                                    <td><input id="number" type="number" value="0" style="width: 5em;"></td>
-                                    <th data-sortable="" style="width:10.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                
-                                        Añadir al carro
-                                    </a>
-
-                            
 
 
 
-                                        
-                                </tr>
-                               
-                                {%endfor%}
-                            </table>
-                    
+
+            <div class="card-body" style="overflow-y: auto;">
+
+                <table class="table table-striped dataTable-table" id="tabla" style="width:100%">
+                    <!-- ID de "tabla" para realizar busqueda-->
+                    <thead>
+                        <tr>
+                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Nombre</a>
+                            </th>
+                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Precio</a>
+                            </th>
+                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">ingresar
+                                    Cantidad</a></th>
+                        </tr>
+                    </thead>
+
+
+                    {%for lista in listatabla%}
+                    <tr>
+                        <td style="display: none;">{{lista.codigo_productos}}</td>
+                        <td>{{lista.nombre_productos}}</td>
+                        <td>{{lista.precioventa_productos}}</td>
+                        <td><input id="number" type="number" value="0" style="width: 5em;"></td>
+                        <th data-sortable="" style="width:10.125%;"><a
+                                href="{%url 'editproducto' lista.codigo_productos %}"
+                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                data-original-title="Edit user">
+
+                                Añadir al carro
+                            </a>
+
+
+
+
+
+
+                    </tr>
+
+                    {%endfor%}
+                </table>
+
             </div>
             <div class="contenedorfactura">
-                    
-                            <table class="table table-striped dataTable-table" id="table2" style="width:1%">
-                                <thead>
-        
-                                    <tr>
-                                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
-                                            class="dt">Nombre</a></th>
-                                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#"
-                                                class="dt">cantidad</a></th>
-                                    </tr>
-                                    
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <tr>
-                                <th data-sortable="dataTable-sorter" style="height: 2em; margin-top: 1m;"><a href="#" 
-                                    class="dt">Subtotal</a></th>    
-                            </tr>
-                            
-                           
-                          
-                </div>        
-            
-                        </div>
-                        <footer>
-                            <div class="footer clearfix mb-0 text-muted">
-                               
-                                    <button class="Vender">
-                                        Vender
-                                    </button>
-                            
-                
-                            </div>
-                           
-                            
-                        </footer>
-            </div> 
+
+                <table class="table table-striped dataTable-table" id="table2" style="width:1%">
+                    <thead>
+
+                        <tr>
+                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Nombre</a>
+                            </th>
+                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">cantidad</a>
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <tr>
+                    <th data-sortable="dataTable-sorter" style="height: 2em; margin-top: 1m;"><a href="#"
+                            class="dt">Subtotal</a></th>
+                </tr>
+
+
+
+            </div>
+
         </div>
-        
-       
-    </form>
-    
+        <footer>
+            <div class="footer clearfix mb-0 text-muted">
+
+                <button class="Vender">
+                    Vender
+                </button>
 
 
-                      
+            </div>
+
+
+        </footer>
+</div>
+</div>
+
+
+</form>
+
+
+
+
 
 </body>
 
@@ -240,7 +251,7 @@
     const open = document.getElementById('open');
     const modal_container = document.getElementById('modal_container');
     const close = document.getElementById('close');
-    
+
     open.addEventListener('click', () => {
         modal_container.classList.add('show');
     });
