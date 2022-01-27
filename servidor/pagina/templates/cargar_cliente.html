@@ -31,21 +31,15 @@
                 <input type="text" class="clienteptex" id="buscar"> <!-- ID de "buscar" para realizar busqueda-->
             </div>
         </div>
-        <div class="footer clearfix mb-0 text-muted">
-
-            <button class="guardar-producto" onclick="return confirm('Estas seguro que quieres guardar este usuario');"
-                type="submit">
+        
+        <button onclick="notifySuccess()" class="guardar-producto"  type="submit">
                 Guardar cliente
-            </button>
-
+        </button>
+        <div id="notification-area">
         </div>
-
     </footer>
 </form>
-<div class="card-body">
-    <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-        <div class="dataTable-top">
-            <div class="dataTable-dropdown">
+    <div class="card-body" style="overflow-y:auto">
                 <table class="table table-striped dataTable-table" id="tabla">
                     <thead>
                         <tr>
@@ -89,26 +83,14 @@
                                 
                             </a></td>
                             </td>
-
-
-
-
                     </tr>
                     {%endfor%}
                 </table>
-            </div>
-        </div>
-        </body>
+    </div>
+          
+</body>
 
-        </html>
+</html>
         <script src="{% static 'assets/js/search.js' %}"></script> <!-- Script para busqueda-->
-        <script src="{% static 'assets/js/feather-icons/feather.min.js'%}"></script>
-        <script src="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
-        <script src="{% static 'assets/js/app.js'%}"></script>
-        <script src="{% static 'assets/vendors/chartjs/Chart.min.js'%}"></script>
-        <script src="{% static 'assets/vendors/apexcharts/apexcharts.min.js'%}"></script>
-        <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
-
-
-        <script src="{% static 'assets/js/main.js'%}"></script>
-        {%endblock%}
+        <script src="{% static 'assets/js/alerta.js' %}"></script>
+{%endblock%}
