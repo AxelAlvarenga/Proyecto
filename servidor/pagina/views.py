@@ -58,7 +58,7 @@ def editproducto(request, producto_actual=0):
             {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario", "listacategoria":listacategoria})
         else:
             return render(request, "editproducto.html",
-            {"nombre_completo":request.session.get("nombre_completo"), "producto_actual":producto_actual, "titulo":"Cargar Usuario", "listacategoria":listacategoria})
+            {"nombre_completo":request.session.get("nombredelusuario"), "producto_actual":producto_actual, "titulo":"Cargar Usuario", "listacategoria":listacategoria})
 
     if request.method=="POST":
         if producto_actual==0:

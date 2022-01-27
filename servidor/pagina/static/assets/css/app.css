@@ -1605,10 +1605,25 @@ footer div{
   
 }
 .Vender{
-  position:fixed; 
-  text-align: right;
-  width: 100%;
-  bottom: 0;
+  position:absolute;
+  left: 90%;
+  top: 87%;
+  width: 10%;
+  height: 5%;
+  bottom: 15;
+  color: #0d6efd;
+  background: transparent;
+  border: 2px solid #2d3645;
+  border-radius: 6px;
+  text-align: center;
+}
+.Cancelar{
+  position:absolute;
+  left: 78%;
+  top: 87%;
+  width: 10%;
+  height: 5%;
+  bottom: 15;
   color: #0d6efd;
   background: transparent;
   border: 2px solid #2d3645;
@@ -1618,6 +1633,18 @@ footer div{
 .Vender:hover {
   background-color: #00ba2e;
   color: white;
+}
+.Cancelar:hover {
+  background-color: #da0000;
+  color: white;
+}
+.subtotal{
+position: absolute;
+left: 75%;
+top:70%;
+font-weight: bold;
+
+
 }
 
 

@@ -42,127 +42,133 @@
     }
 </style>
 
-    <form>
+<form>
 
-        <div class="clientept">
-            <div>
-                <label for="ingresar-nombre">Cedula de cliente </label>
-                <input type="text" class="clienteptex">
-                {%for lista in listaclientes%}
-                <td>{{lista.codigo_cliente}}</td>
-                {%endfor%}
-
-            </div>
-            <div class="forma">
-                <label><input type="checkbox" id="cbox1" value="first_checkbox"> Cliente casual</label>
-
-            </div>
-
-
-        </div>
-        <div class="clientept">
-            <label for="ingresar-nombre">Nombre del Cliente: </label>
-           
+    <div class="clientept">
+        <div>
+            <label for="ingresar-nombre">Cedula de cliente </label>
+            <input type="text" class="clienteptex">
             {%for lista in listaclientes%}
-                <td>{{lista.nombre_cliente}}</td>
+            <td>{{lista.codigo_cliente}}</td>
             {%endfor%}
+
         </div>
-        <div class="busqueda">
-            <div>
-                <label for="ingresar-nombre">Buscar producto </label>
-                <input type="text" class="clienteptex" id="buscar"> <!-- ID de "buscar" para realizar busqueda-->
-            </div>
+        <div class="forma">
+            <label><input type="checkbox" id="cbox1" value="first_checkbox"> Cliente casual</label>
+
         </div>
 
-        <div class="alineacion">
+
+    </div>
+    <div class="clientept">
+        <label for="ingresar-nombre">Nombre del Cliente: </label>
+
+        {%for lista in listaclientes%}
+        <td>{{lista.nombre_cliente}}</td>
+        {%endfor%}
+    </div>
+    <div class="busqueda">
+        <div>
+            <label for="ingresar-nombre">Buscar producto </label>
+            <input type="text" class="clienteptex" id="buscar"> <!-- ID de "buscar" para realizar busqueda-->
+        </div>
+    </div>
+
+    <div class="alineacion">
 
 
 
 
-            <div class="card-body" style="overflow-y: auto;">
+        <div class="card-body" style="overflow-y: auto;">
 
-                <table class="table table-striped dataTable-table" id="tabla" style="width:100%">
-                    <!-- ID de "tabla" para realizar busqueda-->
-                    <thead>
-                        <tr>
-                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Nombre</a>
-                            </th>
-                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Precio</a>
-                            </th>
-                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">ingresar
-                                    Cantidad</a></th>
-                        </tr>
-                    </thead>
-
-
-                    {%for lista in listatabla%}
+            <table class="table table-striped dataTable-table" id="tabla" style="width:100%">
+                <!-- ID de "tabla" para realizar busqueda-->
+                <thead>
                     <tr>
-                        <td style="display: none;">{{lista.codigo_productos}}</td>
-                        <td>{{lista.nombre_productos}}</td>
-                        <td>{{lista.precioventa_productos}}</td>
-                        <td><input id="number" type="number" value="0" style="width: 5em;"></td>
-                        <th data-sortable="" style="width:10.125%;"><a
-                                href="{%url 'editproducto' lista.codigo_productos %}"
-                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                data-original-title="Edit user">
-
-                                Añadir al carro
-                            </a>
-
-
-
-
-
-
+                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Nombre</a>
+                        </th>
+                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Precio</a>
+                        </th>
+                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">ingresar
+                                Cantidad</a></th>
                     </tr>
+                </thead>
 
-                    {%endfor%}
-                </table>
 
-            </div>
-            <div class="contenedorfactura">
-
-                <table class="table table-striped dataTable-table" id="table2" style="width:1%">
-                    <thead>
-
-                        <tr>
-                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Nombre</a>
-                            </th>
-                            <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">cantidad</a>
-                            </th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                        <tr>
-
-                        </tr>
-                    </tbody>
-                </table>
+                {%for lista in listatabla%}
                 <tr>
-                    <th data-sortable="dataTable-sorter" style="height: 2em; margin-top: 1m;"><a href="#"
-                            class="dt">Subtotal</a></th>
+                    <td style="display: none;">{{lista.codigo_productos}}</td>
+                    <td>{{lista.nombre_productos}}</td>
+                    <td>{{lista.precioventa_productos}}</td>
+                    <td><input id="number" type="number" value="0" style="width: 5em;"></td>
+                    <th data-sortable="" style="width:10.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}"
+                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                            data-original-title="Edit user">
+
+                            Añadir al carro
+                        </a>
+
+
+
+
+
+
                 </tr>
 
-
-
-            </div>
+                {%endfor%}
+            </table>
 
         </div>
-        <footer>
-            <div class="footer clearfix mb-0 text-muted">
+        <div class="contenedorfactura">
 
-                <button class="Vender">
-                    Vender
-                </button>
+            <table class="table table-striped dataTable-table" id="table2" style="width:1%">
+                <thead>
+
+                    <tr>
+                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">Nombre</a>
+                        </th>
+                        <th data-sortable="dataTable-sorter" style="width: 10%;"><a href="#" class="dt">cantidad</a>
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+            <tr>
+                <th><a href="#" class="subtotal">Total a pagar : </a>
+                </th>
+            </tr>
 
 
-            </div>
+
+        </div>
+
+    </div>
+    <div class="footer clearfix mb-0 text-muted">
+
+        <button class="Cancelar">
+            Cancelar
+        </button>
 
 
-        </footer>
-</div>
-</div>
+    </div>
+    <div class="footer clearfix mb-0 text-muted">
+
+        <button class="Vender">
+            Vender
+        </button>
+
+
+    </div>
+
+
+
+    </div>
+    </div>
 
 
 </form>
