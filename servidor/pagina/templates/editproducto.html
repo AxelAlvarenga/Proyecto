@@ -1,7 +1,7 @@
 {%extends 'cabecera.html'%}
 {% load static %}
 {%block cabecera%}
-    <form action="{% url 'editproducto' producto_actual %}" method="POST" >
+    <form action="{% url 'editproducto' producto_actual %}" id="formCliente" onsubmit="notifySuccess(this); return false" method="POST" >
         {% csrf_token %}
         <div class="forma">
             <label for="ingresar-nombre">Añadir nombre del producto</label>
@@ -48,12 +48,7 @@
 
     </html>
 
-        function checker() {
-            var result = confirm('Estas seguro que quieres guardar este producto');
-            if (result == false) {
-                event.preventDefault();
-            }
-        }
+      
     </script>   
 
 

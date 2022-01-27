@@ -1,7 +1,7 @@
 {%extends 'cabecera.html'%}
 {% load static %}
 {%block cabecera%}
-<form action="{% url 'editclientes' cliente_actual %}" method="POST">
+<form action="{% url 'editclientes' cliente_actual %}" id="formCliente" onsubmit="notifySuccess(this); return false" method="POST">
     {% csrf_token %}
     <div class="forma">
         <label for="ingresar-nombre">Numero de cedula</label>
@@ -32,12 +32,9 @@
             </div>
         </div>
         
-        <button class="guardar-producto1" onclick="notifySuccess()"  type="submit">
+        <button class="guardar-producto1" onclick=""  type="submit">
                 Guardar cliente
         </button>
-        <div id="notification-area">
-            
-        </div>
     </footer>
     
 </form>
@@ -90,9 +87,11 @@
                 </table>
     </div>
           
+    <div id="notification-area" style="display: none;">
+            
+    </div>
+    <script src="{% static 'assets/js/search.js' %}"></script> <!-- Script para busqueda-->
+    <script src="{% static 'assets/js/alerta.js' %}"></script>
 </body>
-
 </html>
-        <script src="{% static 'assets/js/search.js' %}"></script> <!-- Script para busqueda-->
-        <script src="{% static 'assets/js/alerta.js' %}"></script>
 {%endblock%}
