@@ -36,3 +36,9 @@ class proveedor(models.Model):
     Telefono_proveedor= models.IntegerField()
     direccion_proveedor=models.CharField(max_length= 50)
 
+class compra_proveedor(models.Model):
+    codigo_productos=models.IntegerField(primary_key=True)
+    nombre_productos= models.CharField(max_length = 50)
+    preciocompra_productos= models.IntegerField()
+    categoria_productos= models.IntegerField()
+    cantidad_productos=models.IntegerField()

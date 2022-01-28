@@ -69,6 +69,12 @@
                             <span>Proveedores</span>
                         </a>
                     </li>
+                    <li class="sidebar-item" id="sidebar-item6">
+                        <a href="{% url 'cargar_compra'  %}" class="sidebar-link">
+                            <i class="fas fa-truck-moving"></i>
+                            <span>Compra</span>
+                        </a>
+                    </li>
                 </li>
                 <li class="sidebar-item" id="sidebar-item3">
                     <a href="{% url 'inicio'%}"class='sidebar-link'>
@@ -115,6 +121,7 @@
     var sidebar3 = document.getElementById('sidebar-item3')
     var sidebar4 = document.getElementById('sidebar-item4')
     var sidebar5 = document.getElementById('sidebar-item5')
+    var sidebar6 = document.getElementById('sidebar-item6')
 
     //SE TRAE LOS ELEMENTOS DE HTML AL JAVASCRIPT
 
@@ -133,5 +140,8 @@
     }
     else if (window.location.pathname == '/pagina/cargarproveedor'){
         sidebar5.className += ' active'
+    }
+    else if (window.location.pathname == '/pagina/cargar_cliente'){
+        sidebar6.className += ' active'
     }
 </script>

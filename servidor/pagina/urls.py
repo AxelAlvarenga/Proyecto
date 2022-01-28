@@ -15,7 +15,7 @@ path('borrarcliente/<int:cliente_actual>', views.borrarcliente , name='borrarcli
 path('borrarproveedor/<int:proveedor_actual>', views.borrarproveedor , name='borrarproveedor'),
 path('cargar_proveedor/<int:proveedor_actual>', views.editproveedor , name='cargar_proveedor'),
 path('modusuarios/<int:usuario_actual>',views.modusuarios, name='modusuarios'),
-path('borusuario/<int:usuario_actual>',views.borusuario, name='borusuario')
-
+path('borusuario/<int:usuario_actual>',views.borusuario, name='borusuario'),
+path('cargar_compra', views.cargar_compra ,name='cargar_compra')
 
 ]

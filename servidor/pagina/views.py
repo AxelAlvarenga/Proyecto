@@ -37,8 +37,15 @@ def verproducto(request):
     return validar(request,"table-datatable.html")
 
 def salir(request):
+
     request.session.flush()
     return redirect("./")
+
+def cargar_compra(request):
+    listaproveedor=proveedor.objects.all()
+    listacategoria = categoria.objects.all()
+    listatabla=producto.objects.all()
+    return render(request, "cargar_compra.html", {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla, "listacategoria":listacategoria, "listaproveedor":listaproveedor})
 
 
 
