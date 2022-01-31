@@ -47,7 +47,7 @@
     <div class="clientept">
         <div>
             <label for="ingresar-nombre">Cedula de cliente </label>
-            <input type="text" class="clienteptex">
+            <input type="text" class="clienteptex" id="cedula" onfocusout="traerCliente(this)">
             {%for lista in listaclientes%}
             <td>{{lista.codigo_cliente}}</td>
             {%endfor%}
@@ -61,7 +61,7 @@
 
     </div>
     <div class="clientept">
-        <label for="ingresar-nombre">Nombre del Cliente: </label>
+        <label for="ingresar-nombre" id="nombre_cliente">Nombre del Cliente: </label>
 
         {%for lista in listaclientes%}
         <td>{{lista.nombre_cliente}}</td>
@@ -100,7 +100,7 @@
                     <td style="display: none;">{{lista.codigo_productos}}</td>
                     <td>{{lista.nombre_productos}}</td>
                     <td>{{lista.precioventa_productos}}</td>
-                    <td><input id="number" type="number" value="0" style="width: 5em;"></td>
+                    <td><input id="number" type="number" value="{{lista.cantidad_productos}}" max="{{lista.cantidad_productos}}" style="width: 5em;"></td>
                     <th data-sortable="" style="width:10.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}"
                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                             data-original-title="Edit user">
@@ -185,16 +185,26 @@
 
 
 <script>
-    const open = document.getElementById('open');
-    const modal_container = document.getElementById('modal_container');
-    const close = document.getElementById('close');
+    function traerCliente(event) { //event es el input donde se carga el valor
+        var flag = false
+        var nCliente = document.getElementById("nombre_cliente") //traigo el label que se va a modificar con el nombre del cliente
+        {% for cliente in listacliente %}
+            var ci_cliente = "{{cliente.codigo_cliente}}"   //se trae cedula del cliente
 
-    open.addEventListener('click', () => {
-        modal_container.classList.add('show');
-    });
-    close.addEventListener('click', () => {
-        modal_container.classList.remove('show');
-    });
+            if(event.value == ci_cliente) { //se compara si las cedulas de la base de datos coincide con el del input
+                nCliente.innerHTML = "Nombre del Cliente: {{cliente.nombre_cliente}}"   //si coincide se carga el nombre al label
+                flag = true
+            }
+
+            if(!flag) {
+                nCliente.innerHTML = "Nombre del Cliente: No existe ese cliente"//si coincide se muestra el mensaje en el label
+            }
+        {% endfor %}
+
+        if(event.value == '') { //si el input esta vacio el label se vaciara tambien
+            nCliente.innerHTML = "Nombre del Cliente:  "
+        }
+    }
 </script>
 <script src="{% static 'assets/js/search.js' %}"></script> <!-- Script para busqueda-->
 

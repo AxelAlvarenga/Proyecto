@@ -57,15 +57,16 @@ def buscar(request):
 
 def editproducto(request, producto_actual=0):
     listacategoria = categoria.objects.all()
+    listaproveedor=proveedor.objects.all()
     if request.method=="GET":
         product_actual=producto.objects.filter(codigo_productos=producto_actual).exists()
         if product_actual:
             datos_producto=producto.objects.filter(codigo_productos=producto_actual).first()
             return render(request, 'editproducto.html',
-            {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario", "listacategoria":listacategoria})
+            {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario", "listacategoria":listacategoria, "listaproveedor":listaproveedor})
         else:
             return render(request, "editproducto.html",
-            {"nombre_completo":request.session.get("nombredelusuario"), "producto_actual":producto_actual, "titulo":"Cargar Usuario", "listacategoria":listacategoria})
+            {"nombre_completo":request.session.get("nombredelusuario"), "producto_actual":producto_actual, "titulo":"Cargar Usuario", "listacategoria":listacategoria ,"listaproveedor":listaproveedor})
 
     if request.method=="POST":
         if producto_actual==0:
@@ -74,7 +75,8 @@ def editproducto(request, producto_actual=0):
             precioventa_productos=request.POST.get('precioventa_productos'),
             cantidad_productos=request.POST.get('cantidad_productos'),
             categoria_productos=request.POST.get('categoria_productos'),
-            nombre_productos=request.POST.get("nombre_productos"))
+            nombre_productos=request.POST.get("nombre_productos"),
+            nombre_proveedor_id=request.POST.get("proveedor"))
             
             producto_nuevo.save()
         else:
@@ -85,6 +87,7 @@ def editproducto(request, producto_actual=0):
             producto_actual.cantidad_productos=request.POST.get("cantidad_productos")
             producto_actual.precioventa_productos=request.POST.get("precioventa_productos")
             producto_actual.categoria_productos=request.POST.get("categoria_productos")
+            producto_actual.nombre_proveedor_id=request.POST.get("proveedor")
             producto_actual.save()
 
         return redirect("../buscar")
@@ -218,11 +221,11 @@ def editproveedor(request, proveedor_actual=0):
    
 
 def vender(request):
-  
+        listacliente=cliente.objects.all()
         listatabla=producto.objects.all()
         return render(request, "punto_venta.html",
      
-         {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla})
+         {"nombre_completo":request.session.get("nombredelusuario"),"listatabla":listatabla,"listacliente":listacliente })
      
 def borrarproducto(request,producto_actual ):
 

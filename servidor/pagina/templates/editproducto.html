@@ -29,6 +29,13 @@
                 </option>
                 {% endfor %}
             </select>
+            <select class="dataTable-selector form-select" name="proveedor">
+                {% for lista in listaproveedor%}
+                <option value="{{lista.codigo_proveedor}}" {% if lista.codigo_proveedor == datos_act.nombre_proveedor_id %} selected {% endif %}>
+                    {{lista.nombre_proveedor}}
+                </option>
+                {% endfor %}
+            </select>
 
 
 
