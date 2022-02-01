@@ -16,6 +16,10 @@ path('borrarproveedor/<int:proveedor_actual>', views.borrarproveedor , name='bor
 path('cargar_proveedor/<int:proveedor_actual>', views.editproveedor , name='cargar_proveedor'),
 path('modusuarios/<int:usuario_actual>',views.modusuarios, name='modusuarios'),
 path('borusuario/<int:usuario_actual>',views.borusuario, name='borusuario'),
-path('cargar_compra', views.cargar_compra ,name='cargar_compra')
+path('cargar_compra', views.cargar_compra ,name='cargar_compra'),
+path('movimiento_caja', views.movcaja ,name='movimiento_caja'),
+path('apertura_caja', views.abrircaja ,name='apertura_caja'),
+path('retirar_caja', views.retirarcaja ,name='retirar_caja')
+
 
 ]

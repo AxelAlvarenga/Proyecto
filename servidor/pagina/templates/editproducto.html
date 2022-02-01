@@ -29,6 +29,9 @@
                 </option>
                 {% endfor %}
             </select>
+            <div class="card-header">
+                seleccionar proveedor
+            </div>
             <select class="dataTable-selector form-select" name="proveedor">
                 {% for lista in listaproveedor%}
                 <option value="{{lista.codigo_proveedor}}" {% if lista.codigo_proveedor == datos_act.nombre_proveedor_id %} selected {% endif %}>

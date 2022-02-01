@@ -1,0 +1,43 @@
+{%extends 'cabecera.html'%}
+{% load static %}
+{%block cabecera%}
+<form>  
+<div>
+    <div>
+                <a href="{%url 'retirar_caja'%}">
+                    <button class="retirar-dinero"  > 
+                        Retirar dinero
+                    </button>
+                </a>
+                <a href="{%url 'apertura_caja'%}">
+                    <button class="apertura-caja"  > 
+                        apertura de caja 
+                    </button}>
+                </a>
+
+    </div>        
+    <div>
+        <table class="table table-striped dataTable-table" id="tabla">
+            <thead>
+                <tr> 
+                    <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                    class="dataTable-sorter">Usuario</a></th>
+                    <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                        class="dataTable-sorter">Fecha</a></th>
+                        <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                            class="dataTable-sorter">Hora</a></th>
+                   
+                    <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                        class="dataTable-sorter">Motivo</a></th>
+                    <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                        class="dataTable-sorter">Entrada</a></th>
+                        <th data-sortable="" style="width: 23.2012%;"><a href="#"
+                            class="dataTable-sorter">Salida</a></th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>  
+</div>
+</form>
+{%endblock%}

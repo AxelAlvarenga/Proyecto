@@ -31,9 +31,21 @@
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
-
-
                         <li class='sidebar-title'>Mi Menú </li>
+
+                        
+                        <li class="sidebar-item" id="sidebar-item7">
+                            
+                            <a href="{% url 'movimiento_caja'%}"class='sidebar-link'>
+                                <i class="fas fa-paste"></i>
+                                <span>Caja</span>
+                            </a>
+        
+        
+                        </li>
+
+
+                        
                         <li class="sidebar-item" id="sidebar-item4">
                             <a href="{% url 'vender'%}" class="sidebar-link">
                                 <i class="fas fa-cart-plus"></i>
@@ -63,27 +75,27 @@
 
                     
 
-                    <li class="sidebar-item" id="sidebar-item5">
-                        <a href="{% url 'cargar_proveedor' 0 %}" class="sidebar-link">
-                            <i class="fas fa-truck-moving"></i>
-                            <span>Proveedores</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item" id="sidebar-item6">
-                        <a href="{% url 'cargar_compra'  %}" class="sidebar-link">
-                            <i class="fas fa-truck-moving"></i>
-                            <span>Compra</span>
-                        </a>
-                    </li>
-                </li>
-                <li class="sidebar-item" id="sidebar-item3">
-                    <a href="{% url 'inicio'%}"class='sidebar-link'>
-                        <i class="fas fa-paste"></i>
-                        <span>Reportes</span>
-                    </a>
+                        <li class="sidebar-item" id="sidebar-item5">
+                            <a href="{% url 'cargar_proveedor' 0 %}" class="sidebar-link">
+                                <i class="fas fa-truck-moving"></i>
+                                <span>Proveedores</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item" id="sidebar-item6">
+                            <a href="{% url 'cargar_compra'  %}" class="sidebar-link">
+                                <i class="fas fa-truck-moving"></i>
+                                <span>Compra</span>
+                            </a>
+                            </li>
+                        </li>
+                        <li class="sidebar-item" id="sidebar-item3">
+                            <a href="{% url 'inicio'%}"class='sidebar-link'>
+                                <i class="fas fa-paste"></i>
+                                <span>Reportes</span>
+                            </a>
 
 
-                </li>
+                        </li>
 
 
 
@@ -122,6 +134,7 @@
     var sidebar4 = document.getElementById('sidebar-item4')
     var sidebar5 = document.getElementById('sidebar-item5')
     var sidebar6 = document.getElementById('sidebar-item6')
+    var sidebar7 = document.getElementById('sidebar-item7')
 
     //SE TRAE LOS ELEMENTOS DE HTML AL JAVASCRIPT
 
@@ -143,5 +156,8 @@
     }
     else if (window.location.pathname == '/pagina/cargar_compra'){
         sidebar6.className += ' active'
+    }
+    else if (window.location.pathname == '/pagina/movimiento_caja'){
+        sidebar7.className += ' active'
     }
 </script>

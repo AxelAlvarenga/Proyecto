@@ -218,7 +218,19 @@ def editproveedor(request, proveedor_actual=0):
 
         return redirect("../cargar_proveedor/0")
 
-   
+def movcaja(request):
+        return render(request, "caja.html",
+     
+         {"nombre_completo":request.session.get("nombredelusuario") })  
+def abrircaja(request):
+
+        return render(request, "abrir_caja.html",
+              {"nombre_completo":request.session.get("nombredelusuario") }) 
+
+def retirarcaja(request):
+        return render(request, "retirar_caja.html",
+     
+         {"nombre_completo":request.session.get("nombredelusuario") })  
 
 def vender(request):
         listacliente=cliente.objects.all()
