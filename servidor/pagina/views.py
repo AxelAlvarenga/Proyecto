@@ -227,8 +227,8 @@ def abrircaja(request):
         return render(request, "abrir_caja.html",
               {"nombre_completo":request.session.get("nombredelusuario") }) 
 
-def retirarcaja(request):
-        return render(request, "retirar_caja.html",
+def retirar_caja(request):
+        return render(request, 'retirar_caja.html',
      
          {"nombre_completo":request.session.get("nombredelusuario") })  
 

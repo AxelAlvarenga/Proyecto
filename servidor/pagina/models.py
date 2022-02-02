@@ -36,3 +36,11 @@ class producto(models.Model):
     categoria_productos= models.IntegerField()
     cantidad_productos=models.IntegerField()
     nombre_proveedor = models.ForeignKey(proveedor ,on_delete=models.CASCADE,null=True)
+
+class caja(models.Model):
+    codigo_caja=models.IntegerField(primary_key=True)
+    fecha=models.DateField()
+    hora=models.TimeField()
+    motivo=models.CharField(max_length = 50)
+    entrada=models.CharField(max_length = 50)
+    salida=models.CharField(max_length = 50)
