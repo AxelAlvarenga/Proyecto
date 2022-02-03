@@ -9,16 +9,22 @@
         <div class="forma">
   
 
-            <label for="ingresar-nombre">Nombre completo</label>
+            <label for="ingresar-nombre">Nombre completo </label>
             <input type="text" class="form-control" id="formGroupExampleInput1" name="nombre_completo_usuario" value="{{datos_act.nombre_completo_usuario}}">
 
 
-            <label for="ingresar-codigo">Número de telefono</label>
+            <label for="ingresar-codigo">Nombre </label>
             <input type="text" class="form-control" id="formGroupExampleInput2" name="nombre_usuario" value="{{datos_act.nombre_usuario}}">
 
             <label for="ingresar-precio-compra">contraseña</label>
             <input type="text" class="form-control" id="formGroupExampleInput3" name="password_usuario" value="{{datos_act.password_usuario}}">
-
+            <select class="dataTable-selector form-select" name="tipo_usuario">
+            {% for lista in listatabla%}
+            <option value="{{lista.cod_usuario}}" {% if lista.cod_usuario == datos_act.cod_usuario%} selected {% endif %}>
+                {{lista.tipo_usuario}}
+            </option>
+            {% endfor %}
+            </select>
         </div>
         <footer>
             
