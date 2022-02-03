@@ -9,7 +9,7 @@
                     Retirar dinero
                 </button}>
             </a>
-            <a href="{%url 'apertura_caja' %}">
+            <a href="{%url 'abrir_caja' 0 %}">
                 <button class="apertura-caja">
                     apertura de caja
                     </button}>
@@ -28,6 +28,8 @@
 
                         <th data-sortable="" style="width: 23.2012%;"><a href="#" class="dataTable-sorter">Motivo</a>
                         </th>
+                        <th data-sortable="" style="width: 23.2012%;"><a href="#" class="dataTable-sorter">tipo de mov.</a>
+                        </th>
                         <th data-sortable="" style="width: 23.2012%;"><a href="#" class="dataTable-sorter">Entrada</a>
                         </th>
                         <th data-sortable="" style="width: 23.2012%;"><a href="#" class="dataTable-sorter">Salida</a>
@@ -44,13 +46,24 @@
                         {%endfor%}
                         <td>{{lista.fecha_caja}}</td>
                         <td>{{lista.hora_caja}}</td>
+                        {% if lista.motivo_caja == null %}
+                        <td>--------</td>
+                        {% else %}
                         <td>{{lista.motivo_caja}}</td>
+                        {% endif %}
+                        {%if lista.tipo_mov == 1 %}<td>Retirar</td>{% endif %} 
+                        {%if lista.tipo_mov == 2 %}<td>Apertura</td>{% endif %}
+                        {%if lista.tipo_mov == 3 %}<td>Consola</td>{% endif %}
                         {% if lista.entrada_caja == null %}
                         <td>--------</td>
                         {% else %}
                         <td>{{lista.entrada_caja}}</td>
                         {% endif %}
+                        {% if lista.salida_caja == null %}
+                        <td>-------</td>
+                        {% else %}
                         <td>{{lista.salida_caja}}</td>
+                        {% endif %}
                     </tr> 
 
                 {%endfor%} 

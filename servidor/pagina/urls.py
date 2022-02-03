@@ -17,8 +17,8 @@ path('cargar_proveedor/<int:proveedor_actual>', views.editproveedor , name='carg
 path('modusuarios/<int:usuario_actual>',views.modusuarios, name='modusuarios'),
 path('borusuario/<int:usuario_actual>',views.borusuario, name='borusuario'),
 path('cargar_compra', views.cargar_compra ,name='cargar_compra'),
-path('movimiento_caja', views.movcaja ,name='movimiento_caja'),
-path('apertura_caja', views.abrircaja ,name='apertura_caja'),
+path('movimiento_caja', views.vercaja ,name='movimiento_caja'),
+path('abrir_caja/<int:caja_actual>', views.abrir_caja ,name='abrir_caja'),
 
 path('retirar_caja/<int:caja_actual>', views.retirar_caja ,name='retirar_caja')
 
