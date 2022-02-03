@@ -1,6 +1,5 @@
 
 from django.db import models
-from django.db.models.base import ModelState
 
 # Create your models here.
 
@@ -10,6 +9,7 @@ class Usuarios(models.Model):
     nombre_usuario = models.CharField(max_length = 50)
     password_usuario = models.CharField(max_length = 50)
     nombre_completo_usuario = models.CharField(max_length = 200)
+    tipo_usuario=models.IntegerField()
 
 class cliente(models.Model):
     codigo_cliente=models.IntegerField(primary_key=True)
@@ -38,9 +38,10 @@ class producto(models.Model):
     nombre_proveedor = models.ForeignKey(proveedor ,on_delete=models.CASCADE,null=True)
 
 class caja(models.Model):
-    codigo_caja=models.IntegerField(primary_key=True)
-    fecha=models.DateField()
-    hora=models.TimeField()
-    motivo=models.CharField(max_length = 50)
-    entrada=models.CharField(max_length = 50)
-    salida=models.CharField(max_length = 50)
+    codigo_caja=models.AutoField(primary_key=True)
+    fecha_caja=models.DateField()
+    hora_caja=models.TimeField()
+    motivo_caja=models.CharField(max_length = 50)
+    entrada_caja=models.CharField(max_length = 50, null=True)
+    salida_caja=models.CharField(max_length = 50, null=True)
+    nombre_usuario = models.ForeignKey(Usuarios ,on_delete=models.CASCADE,null=True)

@@ -19,7 +19,8 @@ path('borusuario/<int:usuario_actual>',views.borusuario, name='borusuario'),
 path('cargar_compra', views.cargar_compra ,name='cargar_compra'),
 path('movimiento_caja', views.movcaja ,name='movimiento_caja'),
 path('apertura_caja', views.abrircaja ,name='apertura_caja'),
-path('retirar_caja', views.retirar_caja ,name='retirar_caja')
+
+path('retirar_caja/<int:caja_actual>', views.retirar_caja ,name='retirar_caja')
 
 
 ]
