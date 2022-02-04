@@ -222,7 +222,29 @@ def editproveedor(request, proveedor_actual=0):
             proveedor_actual.save() 
 
         return redirect("../cargar_proveedor/0")
+def editcategoria(request, categoria_actual=0):
+    listacategoria=categoria.objects.all()
+    if request.method=="GET":
+        cat_actual=categoria.objects.filter(codigo_categoria=categoria_actual).exists()
+        if cat_actual:
+            datos_categoria=categoria.objects.filter(codigo_categoria=categoria_actual).first()
+            return render(request, 'cargar_categoria.html',
+            {"datos_act":datos_categoria, "categoria_actual":categoria_actual, "titulo":"Editar Usuario","listacategoria":listacategoria})
+        else:
+            return render(request, "cargar_categoria.html", {"nombre_completo":request.session.get("nombredelusuario"), "categoria_actual":categoria_actual, "titulo":"Cargar Usuario","listacategoria":listacategoria})
 
+    if request.method=="POST":
+        if categoria_actual==0:
+            categoria_nuevo=categoria(codigo_categoria=request.POST.get('codigo_categoria'),
+            nombre_categoria=request.POST.get('nombre_categoria'))
+            categoria_nuevo.save()
+
+        else:
+            categoria_actual=categoria.objects.get(codigo_categoria=categoria_actual)
+            categoria_actual.nombre_categoria=request.POST.get("nombre_categoria")
+            categoria_actual.save() 
+
+        return redirect("../cargar_categoria/0")
 def vender(request):
         listacliente=cliente.objects.all()
         listatabla=producto.objects.all()
@@ -284,6 +306,7 @@ def vercaja(request):
 
 
 def abrir_caja(request, caja_actual=0):
+
     listacaja=caja.objects.all()
     listausuario=Usuarios.objects.all()
     if request.method=="GET":
@@ -310,3 +333,9 @@ def abrir_caja(request, caja_actual=0):
             caja_nuevo.save()
 
         return redirect("../movimiento_caja")
+
+def borrarcategoria(request, categoria_actual ):
+
+    categoria.objects.filter(codigo_categoria= categoria_actual).delete()
+
+    return redirect("../cargar_categoria/0")

@@ -32,6 +32,7 @@
             <div class="card-header">
                 seleccionar proveedor
             </div>
+            
             <select class="dataTable-selector form-select" name="proveedor">
                 {% for lista in listaproveedor%}
                 <option value="{{lista.codigo_proveedor}}" {% if lista.codigo_proveedor == datos_act.nombre_proveedor_id %} selected {% endif %}>
@@ -46,7 +47,7 @@
         <footer>
             <div class="footer clearfix mb-0 text-muted">
                
-                    <button class="guardar-producto">
+                    <button class="guardar-producto" onclick="checker()">
                         Guardar Producto
                     </button>
             
@@ -54,12 +55,25 @@
             </div>
         </footer>
     </form>
+    <a href="{%url 'cargar_categoria' 0 %}">
+        <button class="añadir-categoria" onclick="" >
+                añadir categoria
+            <i class="fas fa-edit"></i>
+        </button>
+    </a>
     </body>
 
     </html>
 
       
     </script>   
-
+    <script>
+        function checker() {
+            var result = confirm('Estas seguro que quieres guardar este producto?');
+            if (result == false) {
+                event.preventDefault();
+            }
+        }
+    </script>
 
     {%endblock%}

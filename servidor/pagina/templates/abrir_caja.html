@@ -21,7 +21,7 @@
         <input style="display: none;" name="tipo_mov" value="2" type="number">
                
     </div>
-    <button class="abrir-caja" onclick=""  type="submit"> 
+    <button class="abrir-caja" onclick="checker()"  type="submit"> 
         abrir
     </button>
 
@@ -47,5 +47,13 @@
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     document.getElementById("currentTime").value = time;
+</script>
+<script>
+    function checker() {
+        var result = confirm('Estas seguro que quieres abrir la caja?');
+        if (result == false) {
+            event.preventDefault();
+        }
+    }
 </script>
 {%endblock%}

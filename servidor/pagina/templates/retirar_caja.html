@@ -21,7 +21,7 @@
         <input type="text" id="currentTime"  name="hora_caja" value="{{datos_act.hora_caja}}" style="visibility: hidden;">
         <input style="display: none;" name="tipo_mov" value="1" type="number">
         <a >
-            <button  class="guardar-producto1" type="submit"> 
+            <button  class="guardar-producto1" onclick="checker()" type="submit"> 
                 Retirar dinero
             </button>
         </a>
@@ -47,6 +47,14 @@
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     document.getElementById("currentTime").value = time;
+</script>
+<script>
+    function checker() {
+        var result = confirm('Estas seguro que quieres retirar ese monto?');
+        if (result == false) {
+            event.preventDefault();
+        }
+    }
 </script>
 
 {%endblock%}
