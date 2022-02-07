@@ -9,7 +9,7 @@ from pagina.models import caja
 
 def login(request):
     if request.method == "GET":
-        if request.session.get("nombre_usuario"):
+        if request.session.get("cod_usuario"):
             return redirect("index.html")
         else: 
             return render(request, 'login.html')
@@ -21,21 +21,31 @@ def login(request):
             datos_usuario=Usuarios.objects.filter(nombre_usuario=nusuario).first()
 
             if getattr(datos_usuario,"password_usuario")==pusuario:
-               
+                request.session["cod_usuario"]=getattr(datos_usuario, "cod_usuario")
                 request.session["nombredelusuario"]=getattr(datos_usuario, "nombre_usuario")
                 request.session["nombre_completo_usuario"]=getattr(datos_usuario, "nombre_completo_usuario")
+                request.session["tipo_usuario"]=getattr(datos_usuario, "tipo_usuario")
                 return redirect("index.html")
             else:
                 return render(request, 'login.html', {"mensaje_error":"Contraseña ingresada es incorrecta."})
         else:
             return render(request, 'login.html', {"mensaje_error":"Usuario ingresado no existe."})
-def validar(request, pageSuccess):
-    if request.session.get("nombredelusuario"):
-        return render(request, pageSuccess, {"nombre_completo": request.session.get("nombredelusuario")})
+
+def validar(request, pageSuccess , parameters={}):
+    if request.session.get("cod_usuario"):
+        if (request.session.get("tipo_usuario") == 2) and ((pageSuccess == 'cargar_cliente.html')):
+            return render(request, "index.html", {"nombre_completo": request.session.get("nombredelusuario"),"tipo_usuario": request.session.get("tipo_usuario"), "mensaje": "Este usuario no cuenta con los privilegios suficientes"})
+        else: 
+            return render(request, pageSuccess, {"nombre_completo": request.session.get("nombredelusuario"),"tipo_usuario": request.session.get("tipo_usuario"), "parameters": parameters})
     else:
-        return render(request, 'login.html')           
+        return render(request, 'login.html') 
+
+          
 def inicio(request):
-   return validar(request,"index.html")
+    if request.session.get("cod_usuario"):
+        return render(request,"index.html",{"nombre_completo": request.session.get("nombredelusuario"),"tipo_usuario": request.session.get("tipo_usuario")})
+    else:
+        return redirect('login')
 def verproducto(request):
     return validar(request,"table-datatable.html")
 
@@ -97,34 +107,36 @@ def editproducto(request, producto_actual=0):
 
 def editclientes(request, cliente_actual=0):
     listaclientes=cliente.objects.all()
-    if request.method=="GET":
-        clie_actual=cliente.objects.filter(codigo_cliente=cliente_actual).exists()
-        if clie_actual:
-            datos_cliente=cliente.objects.filter(codigo_cliente=cliente_actual).first()
-            return render(request, 'cargar_cliente.html',
-            {"datos_act":datos_cliente, "cliente_actual":cliente_actual, "titulo":"Editar Usuario" , "listaclientes":listaclientes})
-        else:
-            return render(request, "cargar_cliente.html", {"nombre_completo":request.session.get("nombredelusuario"), "cliente_actual":cliente_actual, "titulo":"Cargar Usuario" , "listaclientes":listaclientes})
+    if request.session.get("cod_usuario"):
+        if request.method=="GET":
+            clie_actual=cliente.objects.filter(codigo_cliente=cliente_actual).exists()
+            if clie_actual:
+                datos_cliente=cliente.objects.filter(codigo_cliente=cliente_actual).first()
+                return validar(request, 'cargar_cliente.html', {"nombre_completo": request.session.get("nombredelusuario"),"tipo_usuario": request.session.get("tipo_usuario"),"datos_act":datos_cliente, "cliente_actual":cliente_actual, "titulo":"Editar Usuario" , "listaclientes":listaclientes})
+            else:
+                return validar(request, "cargar_cliente.html", {"nombre_completo": request.session.get("nombredelusuario"),"tipo_usuario": request.session.get("tipo_usuario"), "cliente_actual":cliente_actual, "titulo":"Cargar Usuario" , "listaclientes":listaclientes})
 
-    if request.method=="POST":
-        if cliente_actual==0:
-            cliente_nuevo=cliente(codigo_cliente=request.POST.get('codigo_cliente'),
-            nombre_cliente=request.POST.get('nombre_cliente'),
-            telefono_cliente=request.POST.get('telefonos_cliente'),
-            direccion_cliente=request.POST.get("direccion_cliente"))
+        if request.method=="POST":
+            if cliente_actual==0:
+                cliente_nuevo=cliente(codigo_cliente=request.POST.get('codigo_cliente'),
+                nombre_cliente=request.POST.get('nombre_cliente'),
+                telefono_cliente=request.POST.get('telefonos_cliente'),
+                direccion_cliente=request.POST.get("direccion_cliente"))
 
-            cliente_nuevo.save()
-        else:
-            cliente_actual=cliente.objects.get(codigo_cliente=cliente_actual)
-            cliente_actual.nombre_cliente=request.POST.get("nombre_cliente")
-            cliente_actual.codigo_cliente=request.POST.get("codigo_cliente")
-            cliente_actual.direccion_cliente=request.POST.get("direccion_cliente")
-            cliente_actual.telefono_cliente=request.POST.get("telefonos_cliente")
+                cliente_nuevo.save()
+            else:
+                cliente_actual=cliente.objects.get(codigo_cliente=cliente_actual)
+                cliente_actual.nombre_cliente=request.POST.get("nombre_cliente")
+                cliente_actual.codigo_cliente=request.POST.get("codigo_cliente")
+                cliente_actual.direccion_cliente=request.POST.get("direccion_cliente")
+                cliente_actual.telefono_cliente=request.POST.get("telefonos_cliente")
 
-            cliente_actual.save()
+                cliente_actual.save()
 
-           
-    return redirect("../editclientes/0")
+            
+        return redirect("../editclientes/0")
+    else:
+        return redirect('login')
 
 def reportescliente(request, cliente_actual=0):
     listaclientes=cliente.objects.all()

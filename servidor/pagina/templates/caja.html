@@ -9,6 +9,11 @@
                     Retirar dinero
                 </button}>
             </a>
+            <a href="">
+                <button class="cerrar-caja">
+                    cerrar caja
+                </button}>
+            </a>
             <a href="{%url 'abrir_caja' 0 %}">
                 <button class="apertura-caja">
                     apertura de caja
@@ -53,7 +58,7 @@
                         {% endif %}
                         {%if lista.tipo_mov == 1 %}<td>Retirar</td>{% endif %} 
                         {%if lista.tipo_mov == 2 %}<td>Apertura</td>{% endif %}
-                        {%if lista.tipo_mov == 3 %}<td>Consola</td>{% endif %}
+                        {%if lista.tipo_mov == 3 %}<td>Venta</td>{% endif %}
                         {% if lista.entrada_caja == null %}
                         <td>--------</td>
                         {% else %}
