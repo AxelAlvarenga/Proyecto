@@ -279,6 +279,7 @@ def borrarcliente(request,cliente_actual ):
 
 def borrarproveedor(request,proveedor_actual ):
 
+
     proveedor.objects.filter(codigo_proveedor= proveedor_actual).delete()
 
     return redirect("../cargar_proveedor/0")
@@ -311,10 +312,7 @@ def retirar_caja(request, caja_actual=0):
 
         return redirect("../movimiento_caja")
 
-def vercaja(request):
-    listacaja = caja.objects.all()
-    listausuario=Usuarios.objects.all()
-    return render(request, "caja.html", {"nombre_completo":request.session.get("nombredelusuario"),"listacaja":listacaja,"listausuario":listausuario})
+
 
 
 def abrir_caja(request, caja_actual=0):
@@ -350,4 +348,34 @@ def borrarcategoria(request, categoria_actual ):
 
     categoria.objects.filter(codigo_categoria= categoria_actual).delete()
 
-    return redirect("../cargar_categoria/0")
+    return redirect("../cargar_categoria/0") 
+
+def cerrar_caja(request, caja_actual=0):
+    listatabla=caja.objects.all()
+    listausuario=Usuarios.objects.all()
+    if request.method=="GET":
+        caj_actual=caja.objects.filter(codigo_caja=caja_actual).exists()
+        if caj_actual:
+            datos_caja=caja.objects.filter(codigo_caja=caja_actual).first()
+            return render(request, 'caja.html',
+            {"datos_act":datos_caja, "caja_actual":caja_actual, "titulo":"Editar Usuario","listatabla":listatabla,"listausuario":listausuario})
+        else:
+            return render(request, "caja.html", {"nombre_completo":request.session.get("nombredelusuario"), "caja_actual":caja_actual, "titulo":"Cargar Usuario","listatabla":listatabla,"listausuario":listausuario})
+
+    if request.method=="POST":
+        datos_usuario=Usuarios.objects.filter(nombre_usuario=request.POST.get('nombredelusuario')).first()
+        
+        if caja_actual==0:
+            caja_nuevo=caja(codigo_caja=request.POST.get('codigo_caja'),
+            nombre_usuario_id=getattr(datos_usuario, "cod_usuario"),
+            tipo_mov=request.POST.get('tipo_mov'),
+            motivo_caja=request.POST.get('motivo_caja'),
+            fecha_caja=request.POST.get('fecha_caja'),
+            hora_caja=request.POST.get('hora_caja'),
+            entrada_caja=request.POST.get('entrada_caja'),
+            total_caja=request.POST.get('total_caja'),
+            salida_caja=request.POST.get('salida_caja'))
+            caja_nuevo.save()
+
+        return redirect("../movimiento_caja")   
+

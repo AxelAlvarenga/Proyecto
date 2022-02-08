@@ -46,3 +46,4 @@ class caja(models.Model):
     salida_caja=models.CharField(max_length = 50, null=True)
     tipo_mov=models.IntegerField(null=True)
     nombre_usuario = models.ForeignKey(Usuarios ,on_delete=models.CASCADE,null=True)
+    total_caja=models.CharField(max_length = 50, null=True)
