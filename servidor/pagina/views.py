@@ -1,11 +1,7 @@
 from django.http import request
 from django.shortcuts import render, redirect
-from pagina.models import Usuarios
-from pagina.models import producto
-from pagina.models import cliente
-from pagina.models import proveedor
-from pagina.models import categoria
-from pagina.models import caja
+from pagina.models import *
+
 
 def login(request):
     if request.method == "GET":
@@ -71,39 +67,54 @@ def buscar(request):
 def editproducto(request, producto_actual=0):
     listacategoria = categoria.objects.all()
     listaproveedor=proveedor.objects.all()
-    if request.method=="GET":
-        product_actual=producto.objects.filter(codigo_productos=producto_actual).exists()
-        if product_actual:
-            datos_producto=producto.objects.filter(codigo_productos=producto_actual).first()
-            return render(request, 'editproducto.html',
-            {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario", "listacategoria":listacategoria, "listaproveedor":listaproveedor})
-        else:
-            return render(request, "editproducto.html",
-            {"nombre_completo":request.session.get("nombredelusuario"), "producto_actual":producto_actual, "titulo":"Cargar Usuario", "listacategoria":listacategoria ,"listaproveedor":listaproveedor})
+    if request.session.get("cod_usuario"):
+        if request.method=="GET":
+            product_actual=producto.objects.filter(codigo_productos=producto_actual).exists()
+            if product_actual:
+                datos_producto=producto.objects.filter(codigo_productos=producto_actual).first()
+                return render(request, 'editproducto.html',
+                {"datos_act":datos_producto, "producto_actual":producto_actual, "titulo":"Editar Usuario", "listacategoria":listacategoria, "listaproveedor":listaproveedor})
+            else:
+                return render(request, "editproducto.html",
+                {"nombre_completo":request.session.get("nombredelusuario"), "producto_actual":producto_actual, "titulo":"Cargar Usuario", "listacategoria":listacategoria ,"listaproveedor":listaproveedor})
 
-    if request.method=="POST":
-        if producto_actual==0:
-            producto_nuevo=producto(codigo_productos=request.POST.get('codigo_productos'),
-            preciocompra_productos=request.POST.get('preciocompra_productos'),
-            precioventa_productos=request.POST.get('precioventa_productos'),
-            cantidad_productos=request.POST.get('cantidad_productos'),
-            categoria_productos=request.POST.get('categoria_productos'),
-            nombre_productos=request.POST.get("nombre_productos"),
-            nombre_proveedor_id=request.POST.get("proveedor"))
-            
-            producto_nuevo.save()
-        else:
-            producto_actual=producto.objects.get(codigo_productos=producto_actual)
-            producto_actual.nombre_productos=request.POST.get("nombre_productos")
-            producto_actual.codigo_productos=request.POST.get("codigo_productos")
-            producto_actual.preciocompra_productos=request.POST.get("preciocompra_productos")
-            producto_actual.cantidad_productos=request.POST.get("cantidad_productos")
-            producto_actual.precioventa_productos=request.POST.get("precioventa_productos")
-            producto_actual.categoria_productos=request.POST.get("categoria_productos")
-            producto_actual.nombre_proveedor_id=request.POST.get("proveedor")
-            producto_actual.save()
+        if request.method=="POST":
+            if producto_actual==0:
+                producto_nuevo=producto(codigo_productos=request.POST.get('codigo_productos'),
+                preciocompra_productos=request.POST.get('preciocompra_productos'),
+                precioventa_productos=request.POST.get('precioventa_productos'),
+                cantidad_productos=request.POST.get('cantidad_productos'),
+                categoria_productos=request.POST.get('categoria_productos'),
+                nombre_productos=request.POST.get("nombre_productos"),
+                nombre_proveedor_id=request.POST.get("proveedor"))
+                
+                producto_nuevo.save()
+            else:
+                datos_usuario=producto.objects.filter(codigo_productos=producto_actual).first()
+                producto_nuevo=producto_audi(nombre_productos = datos_usuario.nombre_productos,
+                preciocompra_productos=datos_usuario.preciocompra_productos,
+                precioventa_productos=datos_usuario.precioventa_productos,
+                cantidad_productos=datos_usuario.cantidad_productos,
+                codigo_productos=datos_usuario.codigo_productos,
+                categoria_productos=datos_usuario.categoria_productos,
+                nombre_proveedor_id=datos_usuario.nombre_proveedor_id,
+                cod_usuario=request.session.get("cod_usuario"),
+                nombre_usuario=request.session.get("nombredelusuario"))
 
-        return redirect("../buscar")
+                producto_nuevo.save()
+                producto_actual=producto.objects.get(codigo_productos=producto_actual)
+                producto_actual.nombre_productos=request.POST.get("nombre_productos")
+                producto_actual.codigo_productos=request.POST.get("codigo_productos")
+                producto_actual.preciocompra_productos=request.POST.get("preciocompra_productos")
+                producto_actual.cantidad_productos=request.POST.get("cantidad_productos")
+                producto_actual.precioventa_productos=request.POST.get("precioventa_productos")
+                producto_actual.categoria_productos=request.POST.get("categoria_productos")
+                producto_actual.nombre_proveedor_id=request.POST.get("proveedor")
+                producto_actual.save()
+
+            return redirect("../buscar")
+        else:
+            return redirect('login')
 
 def editclientes(request, cliente_actual=0):
     listaclientes=cliente.objects.all()
@@ -125,6 +136,15 @@ def editclientes(request, cliente_actual=0):
 
                 cliente_nuevo.save()
             else:
+                datos_usuario=cliente.objects.filter(codigo_cliente=cliente_actual).first()
+                cliente_nueva=cliente_audi(nombre_cliente = datos_usuario.nombre_cliente,
+                codigo_cliente=datos_usuario.codigo_cliente,
+                direccion_cliente=datos_usuario.direccion_cliente,
+                cod_usuario=request.session.get("cod_usuario"),
+                nombre_usuario=request.session.get("nombredelusuario"),
+                telefono_cliente=datos_usuario.telefono_cliente)
+                cliente_nueva.save()
+
                 cliente_actual=cliente.objects.get(codigo_cliente=cliente_actual)
                 cliente_actual.nombre_cliente=request.POST.get("nombre_cliente")
                 cliente_actual.codigo_cliente=request.POST.get("codigo_cliente")
@@ -206,34 +226,48 @@ def borusuario (request, usuario_actual):
       
 def editproveedor(request, proveedor_actual=0):
     listaproveedor=proveedor.objects.all()
-    if request.method=="GET":
-        prov_actual=proveedor.objects.filter(codigo_proveedor=proveedor_actual).exists()
-        if prov_actual:
-            datos_proveedor=proveedor.objects.filter(codigo_proveedor=proveedor_actual).first()
-            return render(request, 'cargar_proveedor.html',
-            {"datos_act":datos_proveedor, "proveedor_actual":proveedor_actual, "titulo":"Editar Usuario","listaproveedor":listaproveedor})
-        else:
-            return render(request, "cargar_proveedor.html", {"nombre_completo":request.session.get("nombredelusuario"), "proveedor_actual":proveedor_actual, "titulo":"Cargar Usuario","listaproveedor":listaproveedor})
+    if request.session.get("cod_usuario"):
+        if request.method=="GET":
+            prov_actual=proveedor.objects.filter(codigo_proveedor=proveedor_actual).exists()
+            if prov_actual:
+                datos_proveedor=proveedor.objects.filter(codigo_proveedor=proveedor_actual).first()
+                return render(request, 'cargar_proveedor.html',
+                {"datos_act":datos_proveedor, "proveedor_actual":proveedor_actual, "titulo":"Editar Usuario","listaproveedor":listaproveedor})
+            else:
+                return render(request, "cargar_proveedor.html", {"nombre_completo":request.session.get("nombredelusuario"), "proveedor_actual":proveedor_actual, "titulo":"Cargar Usuario","listaproveedor":listaproveedor})
 
-    if request.method=="POST":
-        if proveedor_actual==0:
-            proveedor_nuevo=proveedor(codigo_proveedor=request.POST.get('codigo_proveedor'),
-            nombre_proveedor=request.POST.get('nombre_proveedor'),
-            ruc_proveedor=request.POST.get('ruc_proveedor'),
-            Telefono_proveedor=request.POST.get('Telefono_proveedor'),
-            direccion_proveedor=request.POST.get("direccion_proveedor"))
-            
-            proveedor_nuevo.save()
+        if request.method=="POST":
+            if proveedor_actual==0:
+                proveedor_nuevo=proveedor(codigo_proveedor=request.POST.get('codigo_proveedor'),
+                nombre_proveedor=request.POST.get('nombre_proveedor'),
+                ruc_proveedor=request.POST.get('ruc_proveedor'),
+                Telefono_proveedor=request.POST.get('Telefono_proveedor'),
+                direccion_proveedor=request.POST.get("direccion_proveedor"))
+                
+                proveedor_nuevo.save()
 
-        else:
-            proveedor_actual=proveedor.objects.get(codigo_proveedor=proveedor_actual)
-            proveedor_actual.nombre_proveedor=request.POST.get("nombre_proveedor")
-            proveedor_actual.ruc_proveedor=request.POST.get("ruc_proveedor")
-            proveedor_actual.Telefono_proveedor=request.POST.get("Telefono_proveedor")
-            proveedor_actual.direccion_proveedor=request.POST.get("direccion_proveedor")
-            proveedor_actual.save() 
+            else:
+                datos_usuario=proveedor.objects.filter(codigo_proveedor=proveedor_actual).first()
+                proveedor_nuevo=proveedor_audi(nombre_proveedor = datos_usuario.nombre_proveedor,
+                ruc_proveedor=datos_usuario.ruc_proveedor,
+                Telefono_proveedor=datos_usuario.Telefono_proveedor,
+                codigo_proveedor=datos_usuario.codigo_proveedor,
+                direccion_proveedor=datos_usuario.direccion_proveedor,
+                cod_usuario=request.session.get("cod_usuario"),
+                nombre_usuario=request.session.get("nombredelusuario"))
 
-        return redirect("../cargar_proveedor/0")
+                proveedor_nuevo.save()
+
+                proveedor_actual=proveedor.objects.get(codigo_proveedor=proveedor_actual)
+                proveedor_actual.nombre_proveedor=request.POST.get("nombre_proveedor")
+                proveedor_actual.ruc_proveedor=request.POST.get("ruc_proveedor")
+                proveedor_actual.Telefono_proveedor=request.POST.get("Telefono_proveedor")
+                proveedor_actual.direccion_proveedor=request.POST.get("direccion_proveedor")
+                proveedor_actual.save() 
+
+            return redirect("../cargar_proveedor/0")
+    else:
+            return redirect('login')
 def editcategoria(request, categoria_actual=0):
     listacategoria=categoria.objects.all()
     if request.method=="GET":

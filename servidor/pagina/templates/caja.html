@@ -10,7 +10,7 @@
                 </button}>
             </a>
             <a>
-                <form class="abrir-caja-input"  action="{% url 'cerrar_caja' caja_actual %}" id="formCliente" method="POST">  
+                <form class="abrir-caja-input"  action="{% url 'cerrar_caja' caja_actual %}" id="formCliente" method="POST" style="visibility: hidden;">  
                             {% csrf_token %} 
                             <input style="display: none;" name="nombredelusuario" value="{{nombre_completo}}">
                             <input  type="text" class="clienteptex" name="entrada_caja" value="{{datos_act.entrada_caja}}" style="display: none;"> 
@@ -21,8 +21,8 @@
                             <input type="text" class="form-control" id="formGroupExampleInput2" name="total_caja" value="{{datos_act.total_caja}}"style="display: none;">
                             <input type="date" id="fechaActual" name="fecha_caja" value="{{datos_act.fecha_caja}}" style="display: none;">
                             <input type="text" id="currentTime"  name="hora_caja" value="{{datos_act.hora_caja}}" style="display: none;">
-                            <input style="display: none;" name="tipo_mov" value="2" type="number">
-                        <button class="cerrar-caja" onclick="checker()"  type="submit"> 
+                            <input style="display: none;" name="tipo_mov" value="3" type="number">
+                        <button class="cerrar-caja" onclick="checker()" onfocusout="suma(this)" type="submit" > 
                             cerrar caja
                         </button>
                 </form>
@@ -31,15 +31,17 @@
      
           
             <a href="{%url 'abrir_caja' 0 %}">
-                <button class="apertura-caja">
+                <button class="apertura-caja" >
                     apertura de caja
                     </button}>
             </a>
 
         </div>
         
-        <div>
-            <table class="table table-striped dataTable-table" id="tabla" style="overflow-y: scroll;">
+       
+        <div class="card-body" style="overflow-y:auto;">
+
+            <table class="table table-striped dataTable-table" id="tabla" style="width:100%">
                 <thead>
                     <tr>
                         <th data-sortable="" style="width: 23.2012%;"><a href="#" class="dataTable-sorter">Usuario</a>
@@ -96,8 +98,9 @@
 
 
         </div>
-        <th data-sortable="" style="width: 23.2012%;"><a href="#" class="dataTable-sorter">Total:</a>
-        </th>
+        <div>
+            <label data-sortable="" style="width: 23.2012%;" id="total_caja" onfocusout="suma(this)">Total:</label>
+        </div>  
     </div>
 </body>
 <script>
@@ -127,5 +130,16 @@
         }
     }
 </script>
+<script>
+     function suma(event){
+            var total="0"
+            var total=document.getElementById("total_caja")
+            {%for lista in listatabla%}
+                  total= total+({{lista.entrada_caja}})-({{lista.salida_caja}});
+            {% endfor %}
+
+       resultado=total;
+    }
+</script>   
 
 {%endblock%}
