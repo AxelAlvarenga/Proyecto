@@ -95,7 +95,7 @@
                     <td style="display: none;">{{lista.codigo_productos}}</td>
                     <td>{{lista.nombre_productos}}</td>
                     <td>{{lista.precioventa_productos}}</td>
-                    <td><input id="number" type="number" value="{{lista.cantidad_productos}}" max="{{lista.cantidad_productos}}" style="width: 5em;"></td>
+                    <td><input id="number" type="number" value="{{lista.cantidad_productos}}" max="{{lista.cantidad_productos}}" style="width: 5em;" onclick="if(this.value=='{{lista.cantidad_productos}}') this.value=''" onblur="if(this.value=='') this.value='{{lista.cantidad_productos}}'" ></td>
                     <th data-sortable="" style="width:10.125%;"><a href="{%url 'editproducto' lista.codigo_productos %}"
                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                             data-original-title="Edit user">

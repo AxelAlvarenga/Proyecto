@@ -18,6 +18,7 @@
                             <input value="{{lista.cod_usuario}}" {% if lista.cod_usuario == datos_act.nombre_usuario_id%} {{lista.nombre_usuario}} {% endif %} style="visibility: hidden;">
                             </input>
                             {% endfor %}
+                            
                             <input type="text" class="form-control" id="formGroupExampleInput2" name="total_caja" value="{{datos_act.total_caja}}"style="display: none;">
                             <input type="date" id="fechaActual" name="fecha_caja" value="{{datos_act.fecha_caja}}" style="display: none;">
                             <input type="text" id="currentTime"  name="hora_caja" value="{{datos_act.hora_caja}}" style="display: none;">
@@ -131,15 +132,27 @@
     }
 </script>
 <script>
-     function suma(event){
-            var total="0"
-            var total=document.getElementById("total_caja")
-            {%for lista in listatabla%}
-                  total= total+({{lista.entrada_caja}})-({{lista.salida_caja}});
-            {% endfor %}
+    function suma(event){
+        var total = 0
+        var total_caja = document.getElementById("total_caja")
+        {% for lista in listatabla %}
+            if({{lista.entrada_caja}}){
+                total+=parseInt("{{lista.entrada_caja}}")
+            } else {
+                total+=0
+            }
 
-       resultado=total;
+            if({{lista.salida_caja}}){
+                total-=parseInt("{{lista.salida_caja}}")
+            } else {
+                total-=0
+            }
+        {% endfor %}
+
+        total_caja = total
+        
     }
-</script>   
+    suma()
+</script>  
 
 {%endblock%}

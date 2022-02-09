@@ -19,11 +19,13 @@
             <label for="ingresar-precio-compra">contraseña</label>
             <input type="text" class="form-control" id="formGroupExampleInput3" name="password_usuario" value="{{datos_act.password_usuario}}">
             <select class="dataTable-selector form-select" name="tipo_usuario">
-            {% for lista in listatabla%}
-            <option value="{{lista.cod_usuario}}" {% if lista.cod_usuario == datos_act.cod_usuario%} selected {% endif %}>
-                {{lista.tipo_usuario}}
-            </option>
-            {% endfor %}
+                {%if parameters.datos_act.tipo_usuario == 1 %}
+                <option value="1" id="opcion_select" selected>Administrador</option>
+                <option value="2" id="opcion_select">Empleado</option>
+                {% else %}
+                <option value="1" id="opcion_select">Administrador</option>
+                <option value="2" id="opcion_select" selected>Empleado</option>
+                {% endif %}
             </select>
         </div>
         <footer>
